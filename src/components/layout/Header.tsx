@@ -20,22 +20,21 @@ const Header: React.FC = () => {
   );
 };
 
-// Inline styles (or replace these with your CSS classes)
 const headerStyle: React.CSSProperties = {
   background: '#333',
   padding: '1rem 2rem',
-  color: '#fff',
+  color: '#fff'
 };
 
 const navStyle: React.CSSProperties = {
   display: 'flex',
-  justifyContent: 'space-around',
+  justifyContent: 'space-around'
 };
 
 const linkStyle: React.CSSProperties = {
   color: '#fff',
   textDecoration: 'none',
-  fontSize: '1.1rem',
+  fontSize: '1.1rem'
 };
 
 export default Header;
