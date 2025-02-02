@@ -1,26 +1,14 @@
-// src/components/layout/Footer.tsx
 import React from 'react';
+import styles from './Footer.module.css';
 
 const Footer: React.FC = () => {
   return (
-    <footer style={footerStyle}>
-      <p style={paragraphStyle}>&copy; {new Date().getFullYear()} My Personal Website. All rights reserved.</p>
+    <footer className={styles.footer}>
+      <p className={styles.paragraph}>
+        &copy; {new Date().getFullYear()} My Personal Website. All rights reserved.
+      </p>
     </footer>
   );
-};
-
-const footerStyle: React.CSSProperties = {
-  background: '#333',
-  padding: '1rem 2rem',
-  color: '#fff',
-  textAlign: 'center',
-  position: 'fixed',
-  bottom: 0,
-  width: '100%'
-};
-
-const paragraphStyle: React.CSSProperties = {
-  margin: 0
 };
 
 export default Footer;
