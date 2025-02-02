@@ -1,27 +1,139 @@
 /* src/components/hero/Hero.module.css */
+
+/* Base container for the hero section */
 .heroSection {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Theme variations */
+  .dark {
+    background-color: #0d0d0d;
+    color: #ffffff;
+  }
+  .light {
+    background-color: #f5f5f5;
+    color: #333333;
+  }
+  
+  /* Left Panel */
+  .leftPanel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+  }
+  
+  /* Emblem with decorative borders */
+  .emblem {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #ffd700, #ffea00);
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-color: #0d0d0d;
-    color: #ffd700;
-    text-align: center;
-    font-family: 'Nyxerin', sans-serif;  /* Use Nyxerin here */
-  }
-  
-  .heroContent {
-    max-width: 800px;
-    padding: 0 20px;
-  }
-  
-  .heroTitle {
-    font-size: 3rem;
     margin-bottom: 1rem;
+    position: relative;
+    border: 5px solid transparent;
+  }
+  .emblem::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border: 3px dashed #00ffff;
+    border-radius: 50%;
+    transform: rotate(10deg);
+  }
+  .emblem::after {
+    content: "";
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    right: -15px;
+    bottom: -15px;
+    border: 2px dotted #ffd700;
+    border-radius: 50%;
+    transform: rotate(-10deg);
   }
   
-  .heroSubtitle {
-    font-size: 1.5rem;
-    font-weight: 300;
+  /* Emblem text: Japanese quote */
+  .emblemText {
+    font-size: 1.2rem;
+    font-weight: bold;
+    font-family: 'Nyxerin', sans-serif;
+    text-align: center;
+  }
+  
+  /* Name style */
+  .name {
+    font-size: 4rem;
+    font-family: 'Nyxerin', sans-serif;
+    margin-top: 1rem;
+  }
+  
+  /* Right Panel */
+  .rightPanel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+  }
+  
+  /* Error window styling */
+  .errorWindow {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid #00ffff;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    width: 80%;
+    max-width: 300px;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+    animation: glitch 1.5s infinite;
+  }
+  
+  @keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+  }
+  
+  .okButton {
+    background: linear-gradient(45deg, #ffd700, #00ffff);
+    border: none;
+    padding: 0.5rem 1rem;
+    color: #000;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 0.5rem;
+  }
+  
+  /* Theme Toggle Button */
+  .themeToggle {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: linear-gradient(45deg, #ffd700, #00ffff);
+    border: none;
+    padding: 0.5rem 1rem;
+    color: #000;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10;
   }
   

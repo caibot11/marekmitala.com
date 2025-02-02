@@ -1,11 +1,12 @@
 // src/app/page.tsx
 import React from 'react';
+import Hero from '@/components/hero/Hero';
 
-const HomePage = () => {
+const HomePage: React.FC = () => {
   return (
     <div>
-      <h1>Welcome to My Personal Website</h1>
-      <p>This is the home page.</p>
+      <Hero />
+      {/* Other sections can be added here one at a time */}
     </div>
   );
 };
