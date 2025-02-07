@@ -1,18 +1,70 @@
 /* src/components/layout/Header.module.css */
+
+/* The main header container */
 .header {
-    background: #333;
-    padding: 1rem 2rem;
-    color: #fff;
+  position: relative;        /* Needed for absolutely positioned neonLine */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  /* Give enough top padding so the neon bar won't overlap text */
+  padding: 2rem 2rem 1rem;   /* 2rem top, 1rem bottom, 2rem left/right */
+
+  z-index: 10;
+  background: #1a1a1a;
+  box-shadow: 0 0 5px #ffd700;
+}
+@keyframes neonPulse {
+  0%, 100% {
+    box-shadow: 0 0 5px #ffd700, 0 0 20px rgba(255, 215, 0, 0.5);
   }
-  
-  .nav {
-    display: flex;
-    justify-content: space-around;
+  50% {
+    box-shadow: 0 0 10px #ffd700, 0 0 30px rgba(255, 215, 0, 0.7);
   }
-  
-  .link {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1.1rem;
-  }
-  
+}
+/* The neon bar across the top */
+.neonLine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;           /* thickness of the neon line */
+  background: #ffd700;   /* neon yellow */
+  z-index: 11;           /* higher than header's z-index to show on top */
+}
+
+/* Brand link (site title) */
+.brandLink {
+  color: #ffd700;         /* bright yellow text */
+  font-family: "Nyxerin", sans-serif;
+  font-size: 1.5rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Nav container */
+.nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+/* Base style for each nav link */
+.link {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.2s ease;
+}
+
+/* Hover highlight */
+.link:hover {
+  color: #ffd700;
+}
+
+/* Active link highlight */
+.activeLink {
+  color: #ffd700;
+}

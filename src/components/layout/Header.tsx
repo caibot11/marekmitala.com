@@ -1,25 +1,53 @@
 // src/components/layout/Header.tsx
 "use client";
-import React from 'react';
-import Link from 'next/link';
-import styles from './Header.module.css';
 
-const Header: React.FC = () => {
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import styles from "./Header.module.css";
+
+export default function Header() {
+  const pathname = usePathname();
+
   return (
     <header className={styles.header}>
+      {/* BRAND */}
+      <Link href="/" className={styles.brandLink}>
+        Marek Mitala
+      </Link>
+
+      {/* NAV LINKS */}
       <nav className={styles.nav}>
-        <Link href="/" legacyBehavior>
-          <a className={styles.link}>Home</a>
+        <Link
+          href="/"
+          className={`${styles.link} ${pathname === "/" ? styles.activeLink : ""}`}
+        >
+          Home
         </Link>
-        <Link href="/about" legacyBehavior>
-          <a className={styles.link}>About</a>
+        <Link
+          href="/about"
+          className={`${styles.link} ${
+            pathname === "/about" ? styles.activeLink : ""
+          }`}
+        >
+          About
         </Link>
-        <Link href="/contact" legacyBehavior>
-          <a className={styles.link}>Contact</a>
+        <Link
+          href="/projects"
+          className={`${styles.link} ${
+            pathname === "/projects" ? styles.activeLink : ""
+          }`}
+        >
+          Projects
+        </Link>
+        <Link
+          href="/contact"
+          className={`${styles.link} ${
+            pathname === "/contact" ? styles.activeLink : ""
+          }`}
+        >
+          Contact
         </Link>
       </nav>
     </header>
   );
-};
-
-export default Header;
+}
