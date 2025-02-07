@@ -1,0 +1,33 @@
+/* src/app/globals.css */
+
+/* 1. Import the custom font */
+@font-face {
+  font-family: "Nyxerin";
+  src: url("/fonts/Nyxerin-Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 2. Basic Reset or Minimal CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 3. Global Body Styling */
+html,
+body {
+  width: 100%;
+  height: 100%;
+  font-family: "Orbitron", "Roboto Mono", monospace; /* fallback fonts */
+  background: #0d0d0d;
+  color: #fff;
+}
+
+/* You can define custom CSS variables for neon colors if you like: */
+:root {
+  --color-neon-yellow: #ffd700;
+  --color-neon-cyan: #00ffff;
+  --color-bg-dark: #0d0d0d;
+}

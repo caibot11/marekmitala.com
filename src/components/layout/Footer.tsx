@@ -1,16 +1,16 @@
-// src/components/layout/Footer.tsx
-"use client";
-import React from 'react';
-import styles from './Footer.module.css';
-
-const Footer: React.FC = () => {
+// src/components/Footer.tsx
+export default function Footer() {
   return (
-    <footer className={styles.footer}>
-      <p className={styles.paragraph}>
-        &copy; {new Date().getFullYear()} My Personal Website. All rights reserved.
+    <footer style={{
+      textAlign: "center",
+      padding: "1rem",
+      background: "#1a1a1a",
+      boxShadow: "0 0 5px var(--color-neon-cyan)",
+      marginTop: "1rem",
+    }}>
+      <p style={{ fontSize: "0.9rem" }}>
+        © 2025 My Personal Website. All rights reserved.
       </p>
     </footer>
   );
-};
-
-export default Footer;
+}
