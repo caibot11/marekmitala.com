@@ -3,143 +3,137 @@
   \*******************************************************************************************************************************************************************************************************************************************************************************/
 /* src/components/hero/Hero.module.css */
 
-/* Base container for the hero section */
+/* ---------- Base Hero Container ---------- */
 .Hero_heroSection__1o5TZ {
-    display: flex;
-    flex-direction: row;
-    height: 100vh;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  /* Theme variations */
-  .Hero_dark__EYUbd {
-    background-color: #0d0d0d;
-    color: #ffffff;
-  }
-  .Hero_light__bv_Pq {
-    background-color: #f5f5f5;
-    color: #333333;
-  }
-  
-  /* Left Panel */
-  .Hero_leftPanel__AvknL {
-    flex: 1 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
-  }
-  
-  /* Emblem with decorative borders */
-  .Hero_emblem__O_363 {
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    background: radial-gradient(circle, #ffd700, #ffea00);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 1rem;
-    position: relative;
-    border: 5px solid transparent;
-  }
-  .Hero_emblem__O_363::before {
-    content: "";
-    position: absolute;
-    top: -10px;
-    left: -10px;
-    right: -10px;
-    bottom: -10px;
-    border: 3px dashed #00ffff;
-    border-radius: 50%;
-    transform: rotate(10deg);
-  }
-  .Hero_emblem__O_363::after {
-    content: "";
-    position: absolute;
-    top: -15px;
-    left: -15px;
-    right: -15px;
-    bottom: -15px;
-    border: 2px dotted #ffd700;
-    border-radius: 50%;
-    transform: rotate(-10deg);
-  }
-  
-  /* Emblem text: Japanese quote */
-  .Hero_emblemText__tIgeX {
-    font-size: 1.2rem;
-    font-weight: bold;
-    font-family: 'Nyxerin', sans-serif;
-    text-align: center;
-  }
-  
-  /* Name style */
-  .Hero_name__n411n {
-    font-size: 4rem;
-    font-family: 'Nyxerin', sans-serif;
-    margin-top: 1rem;
-  }
-  
-  /* Right Panel */
-  .Hero_rightPanel__r1m8x {
-    flex: 1 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
-  }
-  
-  /* Error window styling */
-  .Hero_errorWindow__HHXGb {
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 2px solid #00ffff;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    width: 80%;
-    max-width: 300px;
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
-    animation: Hero_glitch__yWFFn 1.5s infinite;
-  }
-  
-  @keyframes Hero_glitch__yWFFn {
-    0% { transform: translate(0); }
-    20% { transform: translate(-2px, 2px); }
-    40% { transform: translate(-2px, -2px); }
-    60% { transform: translate(2px, 2px); }
-    80% { transform: translate(2px, -2px); }
-    100% { transform: translate(0); }
-  }
-  
-  .Hero_okButton__Sc9gi {
-    background: linear-gradient(45deg, #ffd700, #00ffff);
-    border: none;
-    padding: 0.5rem 1rem;
-    color: #000;
-    font-family: 'IBM Plex Mono', monospace;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 0.5rem;
-  }
-  
-  /* Theme Toggle Button */
-  .Hero_themeToggle__LQla8 {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: linear-gradient(45deg, #ffd700, #00ffff);
-    border: none;
-    padding: 0.5rem 1rem;
-    color: #000;
-    font-family: 'IBM Plex Mono', monospace;
-    font-weight: bold;
-    cursor: pointer;
-    z-index: 10;
-  }
-  
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #0d0d0d; 
+  color: #ffffff;
+  /* Choose a general fallback font for body text */
+  font-family: "Orbitron", "Roboto Mono", monospace; 
+}
+
+/* ---------- Hero Content ---------- */
+.Hero_heroContent__LZ5C6 {
+  text-align: center;
+  z-index: 1;
+  max-width: 800px;
+  padding: 0 2rem;
+}
+
+/* Main Title (using Nyxerin) */
+.Hero_heroTitle__nQQsD {
+  font-family: "Nyxerin", sans-serif; /* <-- Apply Nyxerin here */
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px #ffd700;
+}
+
+/* Subtitle (short tagline) */
+.Hero_heroSubtitle__yDBwf {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #00ffff;
+  text-shadow: 0 0 5px #00ffff;
+}
+
+/* Brief description */
+.Hero_heroDescription__629sw {
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  color: #cccccc;
+}
+
+/* CTA Buttons Container */
+.Hero_ctaButtons__UmLPR {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* Primary Button */
+.Hero_ctaButton__xu5a_ {
+  background: linear-gradient(45deg, #ffd700, #ffea00);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  color: #000;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 0 5px #ffd700;
+}
+
+.Hero_ctaButton__xu5a_:hover {
+  filter: brightness(1.2);
+  box-shadow: 0 0 10px #ffd700;
+}
+
+/* Secondary Button */
+.Hero_ctaButtonSecondary__p7EHu {
+  background: linear-gradient(45deg, #00ffff, #00ccff);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  color: #000;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 0 5px #00ffff;
+}
+
+.Hero_ctaButtonSecondary__p7EHu:hover {
+  filter: brightness(1.2);
+  box-shadow: 0 0 10px #00ffff;
+}
+
+/* ---------- Decorative Lines ---------- */
+.Hero_linesContainer__HbSyI {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+/* Vertical line */
+.Hero_verticalLine__eQCjQ {
+  position: absolute;
+  left: 3rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2px;
+  height: 75%;
+  background: #ffd700;
+  box-shadow: 0 0 10px #ffd700;
+}
+/* horizontal line line */
+.Hero_horizontallLine__E5z7o {
+  position: absolute;
+  left: 3rem;
+  top: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 75%;
+  background: #ffd700;
+  box-shadow: 0 0 10px #ffd700;
+}
+
+
 /*!***********************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./src/components/layout/Footer.module.css ***!
   \***********************************************************************************************************************************************************************************************************************************************************************************/

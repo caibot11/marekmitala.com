@@ -2,13 +2,11 @@
 import React from 'react';
 import Hero from '@/components/hero/Hero';
 
-const HomePage: React.FC = () => {
+export default function HomePage() {
   return (
-    <div>
+    <main>
       <Hero />
-      {/* Other sections can be added here one at a time */}
-    </div>
+      {/* Add more sections or components here as needed */}
+    </main>
   );
-};
-
-export default HomePage;
+}

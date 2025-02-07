@@ -1,4 +1,4 @@
-// File: C:\Users\Caibot\Documents\repos\my_website\src\app\layout.tsx
+// File: C:\Users\marek\OneDrive - Office 365 Fontys\Documents\stranka\my_website_v2\src\app\layout.tsx
 import * as entry from '../../../src/app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

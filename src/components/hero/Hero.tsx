@@ -1,36 +1,31 @@
-// src/components/hero/Hero.tsx
 "use client";
-import React, { useState } from 'react';
-import styles from './Hero.module.css';
+import React from "react";
+import styles from "./Hero.module.css";
 
 const Hero: React.FC = () => {
-  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
-  const toggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark');
-  };
-
   return (
-    <section className={`${styles.heroSection} ${styles[theme]}`}>
-      <div className={styles.leftPanel}>
-        <div className={styles.emblem}>
-          <span className={styles.emblemText}>未来は既に始まっている</span>
-        </div>
-        <h1 className={styles.name}>MAREK MITALA</h1>
+    <section className={styles.heroSection}>
+      {/* Decorative lines */}
+      <div className={styles.linesContainer}>
+        <div className={styles.verticalLine}></div>
+        <div className={styles.angledLine}></div>
       </div>
-      <div className={styles.rightPanel}>
-        <div className={styles.errorWindow}>
-          <p>#include &lt;cyber.h&gt;</p>
-          <p>printf("HELLO, CYBER!");</p>
-          <button className={styles.okButton}>OK</button>
-        </div>
-        <div className={styles.errorWindow}>
-          <p>Error: System override</p>
-          <button className={styles.okButton}>OK</button>
+
+      <div className={styles.heroContent}>
+        <h1 className={styles.heroTitle}>MAREK MITALA</h1>
+        <p className={styles.heroSubtitle}>
+          Developer
+        </p>
+        <p className={styles.heroDescription}>
+          Bringing futuristic designs to life using modern web technologies.
+          <br />
+          Skilled in React, Next.js, and CSS animations.
+        </p>
+        <div className={styles.ctaButtons}>
+          <button className={styles.ctaButton}>View My Work</button>
+          <button className={styles.ctaButtonSecondary}>Contact Me</button>
         </div>
       </div>
-      <button onClick={toggleTheme} className={styles.themeToggle}>
-        Toggle Theme
-      </button>
     </section>
   );
 };
