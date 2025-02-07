@@ -1,6 +1,6 @@
 /* src/app/globals.css */
 
-/* 1. Load custom font (if desired) */
+/* 1. Load custom font */
 @font-face {
   font-family: "Nyxerin";
   src: url("/fonts/Nyxerin-Regular.otf") format("opentype");
@@ -20,16 +20,22 @@ html,
 body {
   width: 100%;
   height: 100%;
-  font-family: "Roboto", "Helvetica", sans-serif; /* fallback fonts */
-  background-color: #1f1f1f; /* dark gray */
-  color: #e0e0e0;           /* light gray text */
+  font-family: "Roboto", "Helvetica", sans-serif;
+  background-color: #1f1f1f;
+  color: #e0e0e0;
   line-height: 1.5;
 }
 
-/* 4. Color Variables (soft red accent) */
+/* 4. Color Variables */
 :root {
-  --accent-color: #d34f4f; /* a muted red */
-  --dark-gray: #1f1f1f;   /* main bg */
-  --light-gray: #e0e0e0;  /* main text color */
-  --mid-gray: #333;       /* for borders, subtle backgrounds */
+  --accent-color: #d34f4f;
+  --dark-gray: #1f1f1f;
+  --light-gray: #e0e0e0;
+  --mid-gray: #333;
+}
+
+/* 5. Optional Container (if needed) */
+.page-transition-container {
+  position: relative;
+  overflow: hidden;
 }

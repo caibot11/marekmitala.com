@@ -10,41 +10,26 @@ export default function Header() {
 
   return (
     <header className={styles.header}>
-      {/* BRAND */}
+      {/* Neon line, if desired */}
+      <div className={styles.neonLine}></div>
+      
+      {/* Site Branding */}
       <Link href="/" className={styles.brandLink}>
         Marek Mitala
       </Link>
 
-      {/* NAV LINKS */}
+      {/* Navigation */}
       <nav className={styles.nav}>
-        <Link
-          href="/"
-          className={`${styles.link} ${pathname === "/" ? styles.activeLink : ""}`}
-        >
+        <Link href="/" className={`${styles.link} ${pathname === "/" ? styles.activeLink : ""}`}>
           Home
         </Link>
-        <Link
-          href="/about"
-          className={`${styles.link} ${
-            pathname === "/about" ? styles.activeLink : ""
-          }`}
-        >
+        <Link href="/about" className={`${styles.link} ${pathname === "/about" ? styles.activeLink : ""}`}>
           About
         </Link>
-        <Link
-          href="/projects"
-          className={`${styles.link} ${
-            pathname === "/projects" ? styles.activeLink : ""
-          }`}
-        >
+        <Link href="/projects" className={`${styles.link} ${pathname === "/projects" ? styles.activeLink : ""}`}>
           Projects
         </Link>
-        <Link
-          href="/contact"
-          className={`${styles.link} ${
-            pathname === "/contact" ? styles.activeLink : ""
-          }`}
-        >
+        <Link href="/contact" className={`${styles.link} ${pathname === "/contact" ? styles.activeLink : ""}`}>
           Contact
         </Link>
       </nav>
