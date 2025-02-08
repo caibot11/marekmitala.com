@@ -1,16 +1,33 @@
-// src/components/Footer.tsx
-export default function Footer() {
+import React from "react";
+import styles from "./Footer.module.css";
+import { FaTwitter, FaLinkedin, FaGithub } from "react-icons/fa";
+
+const Footer: React.FC = () => {
   return (
-    <footer style={{
-      textAlign: "center",
-      padding: "1rem",
-      background: "#1a1a1a",
-      boxShadow: "0 0 5px var(--color-neon-cyan)",
-      marginTop: "1rem",
-    }}>
-      <p style={{ fontSize: "0.9rem" }}>
-        © 2025 My Personal Website. All rights reserved.
-      </p>
+    <footer className={styles.footer}>
+      <nav className={styles.socialIcons}>
+        
+        <a
+          href="https://linkedin.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.iconLink}
+          aria-label="LinkedIn"
+        >
+          <FaLinkedin />
+        </a>
+        <a
+          href="https://github.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.iconLink}
+          aria-label="GitHub"
+        >
+          <FaGithub />
+        </a>
+      </nav>
     </footer>
   );
-}
+};
+
+export default Footer;

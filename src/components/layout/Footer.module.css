@@ -1,15 +1,24 @@
-/* src/components/layout/Footer.module.css */
 .footer {
-    background: #333;
-    padding: 1rem 2rem;
-    color: #fff;
-    text-align: center;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-  }
-  
-  .paragraph {
-    margin: 0;
-  }
-  
+  background: #333;
+  padding: 0.5rem;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.socialIcons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.iconLink {
+  color: #fff;
+  font-size: 1.8rem;
+  transition: color 0.3s ease;
+}
+
+.iconLink:hover {
+  color: #1da1f2;
+}

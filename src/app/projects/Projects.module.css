@@ -1,0 +1,67 @@
+.container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  color: #e0e0e0;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+/* Updated card styles for larger size and centered content */
+.card {
+  background: #222;
+  border-radius: 8px;
+  padding: 2rem;          /* increased padding */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+  text-align: center;     /* center the text */
+  min-height: 350px;      /* increase card height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.cardTitle {
+  margin-top: 0;
+  font-size: 1.8rem;
+  color: #ffd700;
+}
+
+.cardDescription {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 1rem 0;
+}
+
+.languages {
+  display: flex;
+  justify-content: center;  /* center the language icons */
+  gap: 0.5rem;
+  margin-top: auto;         /* push icons to the bottom if needed */
+}
+
+.languageIcon {
+  font-size: 1.8rem;
+  color: #fff;
+}
+
+.note {
+  text-align: center;
+  margin-top: 2rem;
+  font-style: italic;
+  color: #aaa;
+}
