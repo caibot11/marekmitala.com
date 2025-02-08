@@ -7,7 +7,7 @@ export default function Hero() {
   return (
     <section className={styles.heroSection}>
       <div className={styles.overlay}>
-        <h1 className={styles.heroTitle}>Welcome to Marek Mitala’s Site</h1>
+        <h1 className={styles.heroTitle}>Welcome to my Webiste :)</h1>
         <p className={styles.heroSubtitle}>
           Exploring modern web development <br /> & Arduino skills.
         </p>

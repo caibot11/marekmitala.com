@@ -36,7 +36,7 @@ const projects: Project[] = [
   },
 ];
 
-const languageIconMap: { [key: string]: JSX.Element } = {
+const languageIconMap: { [key: string]: React.ReactElement } = {
   Arduino: <SiArduino />,
   Python: <SiPython />,
   JavaScript: <SiJavascript />,
