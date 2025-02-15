@@ -1,10 +1,12 @@
+// app/layout.tsx
 import "./globals.css";
 import { Metadata } from "next";
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer"; // Import the Footer component
+import Footer from "@/components/layout/Footer";
+import ParticlesBackground from "@/components/particles/ParticlesBackground";
 
 export const metadata: Metadata = {
-  title: "Marek Mitala’s Site",
+  title: "Marek Mitala",
   description: "A single Header without page transitions",
 };
 
@@ -14,11 +16,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body style={{ margin: 0, background: "#101010", color: "#fff" }}>
+    <html lang="en" suppressHydrationWarning>
+      <head />
+      <body style={{ margin: 0 }}>
+        {/* The ParticlesBackground is fixed and sits at a lower z-index */}
+        <ParticlesBackground />
         <Header />
-        {/* Add bottom padding so content doesn't overlap with the fixed footer */}
-        <div style={{ position: "relative", minHeight: "100vh", paddingBottom: "80px" }}>
+        {/* Ensure main content is positioned above the particle canvas */}
+        <div className="id-children">
           {children}
         </div>
         <Footer />

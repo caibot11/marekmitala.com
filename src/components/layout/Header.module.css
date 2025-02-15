@@ -6,14 +6,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  /* Give enough top padding so the neon bar won't overlap text */
   padding: 2rem 2rem 1rem;   /* 2rem top, 1rem bottom, 2rem left/right */
-
   z-index: 10;
   background: #1a1a1a;
   box-shadow: 0 0 5px #ffd700;
 }
+
+/* Neon pulse animation for the header's neon line */
 @keyframes neonPulse {
   0%, 100% {
     box-shadow: 0 0 5px #ffd700, 0 0 20px rgba(255, 215, 0, 0.5);
@@ -22,20 +21,22 @@
     box-shadow: 0 0 10px #ffd700, 0 0 30px rgba(255, 215, 0, 0.7);
   }
 }
+
 /* The neon bar across the top */
 .neonLine {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 4px;           /* thickness of the neon line */
-  background: #ffd700;   /* neon yellow */
-  z-index: 11;           /* higher than header's z-index to show on top */
+  height: 4px;           /* Thickness of the neon line */
+  background: #ffd700;   /* Neon yellow */
+  z-index: 11;           /* Higher than header's z-index to show on top */
+  animation: neonPulse 2s infinite;
 }
 
 /* Brand link (site title) */
 .brandLink {
-  color: #ffd700;         /* bright yellow text */
+  color: #ffd700;         /* Bright yellow text */
   font-family: "Nyxerin", sans-serif;
   font-size: 1.5rem;
   text-decoration: none;

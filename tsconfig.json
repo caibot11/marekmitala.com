@@ -38,7 +38,13 @@
     "**/*.ts",
     "**/*.tsx",
     "next-env.d.ts",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "src/**/*",
+    "react-tsparticles-augmentations.d.ts",
+    "types",
+    "app",
+    "components"
+    
   ],
   "exclude": [
     "node_modules"

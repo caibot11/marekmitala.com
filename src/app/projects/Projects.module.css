@@ -3,6 +3,8 @@
   max-width: 1200px;
   margin: 0 auto;
   color: #e0e0e0;
+  position: relative;
+
 }
 
 /* Overall page title uses the custom font */
