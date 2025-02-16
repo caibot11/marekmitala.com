@@ -10,6 +10,7 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   box-sizing: border-box; /* helps avoid overflow on padding */
   position: relative;
+  text-align: center;
   /* If something inside is causing overflow, you could also do: */
   /* overflow-x: hidden; */
 }
