@@ -4,7 +4,7 @@
 .container {
     margin-top: 3rem;
     padding: 2rem;
-    max-width: 900px;
+    max-width: 425px;
     margin-left: auto;
     margin-right: auto;
     background: #222;
@@ -12,8 +12,8 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     position: relative;
     justify-content: center;
-}
-
+  }
+  
 /* Confetti on top */
 .confetti {
     position: fixed !important;
@@ -116,20 +116,21 @@
 
 /* Sudoku board container */
 .board {
-    display: flex;
+    display: flex;             /* keep original flex layout */
     flex-direction: column;
-    width: fit-content;
+    /* width: fit-content; <- remove this line! */
+    width: auto;               /* or 100%, whichever you prefer */
     margin: 0 auto;
     padding: 5px;
     background: #111;
     border: 3px solid #ffd700;
     border-radius: 6px;
-}
+  }
 
-/* Each row is a flex container */
+/* Each row is a flex container (desktop default) */
 .row {
-    display: flex;
-}
+    display: flex; 
+  }
 
 /* Each cell: default styling */
 .cell {
@@ -145,7 +146,7 @@
     transition: background 0.2s ease;
     position: relative;
     cursor: pointer;
-}
+  }
 
 /* Show a highlight for the selected cell */
 .selectedCell {
@@ -161,13 +162,14 @@
     cursor: default;
 }
 
-/* 3x3 block separators */
+/* 3x3 block separators (desktop) */
 .row .cell:nth-child(3n) {
     border-right: 3px solid #ffd700;
-}
-.row:nth-child(3n) .cell {
+  }
+  .row:nth-child(3n) .cell {
     border-bottom: 3px solid #ffd700;
-}
+  }
+  
 
 /* Wrong input highlight (easy mode only) */
 .wrongInput {
@@ -245,61 +247,105 @@
     filter: brightness(1.2);
 }
 
-/* Mobile Adjustments */
+/* -- MOBILE OVERRIDES -- */
 @media (max-width: 600px) {
-    /* Make the container truly fluid and centered */
     .container {
-      margin-top: 2rem;
       width: 100%;
-      max-width: 400px; 
-      margin-left: auto;
-      margin-right: auto;
-      padding-bottom: 150px;
+      margin: 2% auto 0 auto;
+      padding: 4%;
+      box-sizing: border-box;
+      background: #222;
+      border-radius: 2%;
+      overflow-x: hidden; /* avoid horizontal scroll bars */
       display: flex;
       flex-direction: column;
       align-items: center;
-      box-sizing: border-box; /* helps prevent overflow */
     }
-  
-    /* Let the board fill the container so it centers nicely */
+
+    /* The board spans the container width */
     .board {
-      width: 100% !important; 
-      max-width: 350px;       /* or whatever width makes sense */
-      margin: 0 auto;
-      /* remove or override `width: fit-content` if you have it globally */
-    }
-  
-    /* Shrink each cell to fit on smaller devices */
+        /* Switch to a full-width container on mobile */
+        width: 100% !important;
+        margin: 0 auto;
+        padding: 2%;
+        background: #111;
+        box-sizing: border-box;
+        border: 0.5em solid #ffd700; 
+        border-radius: 2%;
+      }
+
+    /* Switch each row to a grid with 9 columns to avoid horizontal scrolling */
+    .row {
+        display: grid !important;
+        grid-template-columns: repeat(9, 1fr);
+        gap: 1%;
+        width: 100%;
+        margin: 0 auto;
+        box-sizing: border-box;
+      }
+
+    /* Each cell: fill 1/9 of row, with aspect-ratio for squares */
     .cell {
-      width: 35px;    /* or adjust to taste */
-      height: 35px;
-    }
-  
-    /* Keep your number pad fixed at bottom but ensure it’s centered */
+        width: auto;
+        height: auto; 
+        aspect-ratio: 1 / 1;
+        border: 0.2em solid #444;
+        box-sizing: border-box;
+        font-size: 90%;
+        background: #222;
+        color: #e0e0e0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+    /* For 3×3 thick lines in grid mode:
+       every 3rd row in the grid gets a thicker bottom border,
+       and every 3rd column a thicker right border. */
+       .row:nth-child(3n) .cell {
+        border-bottom-width: 0.4em;
+        border-bottom-color: #ffd700;
+      }
+      .cell:nth-child(3n) {
+        border-right-width: 0.4em;
+        border-right-color: #ffd700;
+      }
+    
+
+    /* Mobile number pad pinned at bottom, in a 5-column grid (9 digits + Clear) */
     .numberPad {
-      position: fixed;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      max-width: 400px;
-      background: #222;
-      padding: 0.8rem 0.5rem;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.3rem;
-      z-index: 100;
-      border-top: 2px solid #ffd700;
-    }
-  
-    /* Make each number button shrink gracefully */
+        position: fixed;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        padding: 4%;
+        box-sizing: border-box;
+        background: #222;
+        border-top: 0.5em solid #ffd700;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 3%;
+        z-index: 999;
+        margin-top: 0; /* override desktop margin */
+      }
+    
+
+    /* Each button fills its grid cell, square with aspect-ratio */
     .numberButton {
-      flex: 1 1 50px; 
-      max-width: 50px;
-      height: 50px;
-      font-size: 1.2rem;
-      font-weight: bold;
-      text-align: center;
-    }
-  }
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        background: #ffd700;
+        color: #000;
+        border: none;
+        border-radius: 10%;
+        box-sizing: border-box;
+        font-size: 110%;
+        font-weight: bold;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+}
