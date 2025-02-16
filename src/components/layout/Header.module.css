@@ -100,12 +100,7 @@
 .rainbowLink {
   animation: rainbow 3s linear infinite;
 }
-/* Desktop layout by default */
-@media (min-width: 601px) {
-  .nav {
-    display: flex;
-  }
-}
+
 
 /* Mobile layout */
 @media (max-width: 600px) {
