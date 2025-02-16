@@ -47,7 +47,7 @@ export default function ContactPage() {
           <a href="https://github.com/caibot11" target="_blank" rel="noopener noreferrer">
             <button className={styles.contactButton}>GitHub</button>
           </a>
-          <a href="https://www.linkedin.com/in/yourProfile/" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.linkedin.com/in/caibot-daito-139215213/" target="_blank" rel="noopener noreferrer">
             <button className={styles.contactButton}>LinkedIn</button>
           </a>
         </div>

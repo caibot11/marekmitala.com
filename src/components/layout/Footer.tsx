@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
       <nav className={styles.socialIcons}>
         
         <a
-          href="https://linkedin.com"
+          href="https://www.linkedin.com/in/caibot-daito-139215213/"
           target="_blank"
           rel="noopener noreferrer"
           className={styles.iconLink}
@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
           <FaLinkedin />
         </a>
         <a
-          href="https://github.com"
+          href="https://github.com/caibot11"
           target="_blank"
           rel="noopener noreferrer"
           className={styles.iconLink}

@@ -25,9 +25,47 @@ export default function FunPage() {
   const [noteMode, setNoteMode] = useState(false);
   const [timer, setTimer] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-
-  // Which cell is currently selected by the user (for final input or note input)?
   const [selectedCell, setSelectedCell] = useState<{ row: number; col: number } | null>(null);
+
+  // Track the entire page size to let confetti fill the page
+  const [pageSize, setPageSize] = useState({ width: 0, height: 0 });
+
+  useEffect(() => {
+    function updatePageSize() {
+      // This approach ensures we measure the full page, including any scrolling area
+      const body = document.body;
+      const html = document.documentElement;
+
+      const width = Math.max(
+        body.scrollWidth,
+        body.offsetWidth,
+        html.clientWidth,
+        html.scrollWidth,
+        html.offsetWidth
+      );
+
+      const height = Math.max(
+        body.scrollHeight,
+        body.offsetHeight,
+        html.clientHeight,
+        html.scrollHeight,
+        html.offsetHeight
+      );
+
+      setPageSize({ width, height });
+    }
+
+    // Run initially
+    updatePageSize();
+
+    // Update on resize
+    window.addEventListener("resize", updatePageSize);
+
+    // If your puzzle’s layout changes height dynamically,
+    // you might call updatePageSize() after those changes too.
+
+    return () => window.removeEventListener("resize", updatePageSize);
+  }, []);
 
   useEffect(() => {
     setIsClient(true);
@@ -49,7 +87,9 @@ export default function FunPage() {
       setBoard(JSON.parse(savedBoard));
       setUserBoard(JSON.parse(savedUserBoard));
       setNotes(
-        savedNotes ? JSON.parse(savedNotes) : Array.from({ length: 9 }, () => Array(9).fill(""))
+        savedNotes
+          ? JSON.parse(savedNotes)
+          : Array.from({ length: 9 }, () => Array(9).fill(""))
       );
       setDifficulty(savedDifficulty as "easy" | "medium" | "hard");
       setSolutionHash(savedSolutionHash);
@@ -112,20 +152,17 @@ export default function FunPage() {
       alert("No more attempts left!");
       return;
     }
-
     const solution = decryptSolution(solutionHash);
     if (JSON.stringify(userBoard) === JSON.stringify(solution)) {
       setShowConfetti(true);
       setShowPopup(true);
-      // Stop timer once puzzle is solved
-      setIsPaused(true);
+      setIsPaused(true); // Stop timer once puzzle is solved.
     } else {
       setAttempts((prev) => prev - 1);
       alert(`Incorrect! You have ${attempts - 1} attempts remaining.`);
     }
   };
 
-  // Reveal a hint in one random empty or incorrect cell (if noteMode is off).
   const handleHint = () => {
     if (noteMode) {
       alert("Please disable note mode to use hints.");
@@ -151,20 +188,18 @@ export default function FunPage() {
     setUserBoard(newBoard);
   };
 
-  // When user clicks a cell:
   const handleCellClick = (row: number, col: number) => {
     if (isPaused) return;
     // If the cell is locked (original puzzle number), do nothing.
     if (board[row][col] !== 0) return;
-    // Otherwise, select that cell for input (final or note).
     setSelectedCell({ row, col });
   };
 
-  // Dialer click: user chooses a number (1–9 or 0 for clear).
   const handleDialerClick = (num: number) => {
     if (!selectedCell) return;
     const { row, col } = selectedCell;
-    if (board[row][col] !== 0) return; // locked cell, ignore.
+    // If the puzzle had a pre-filled value, ignore
+    if (board[row][col] !== 0) return;
 
     if (noteMode) {
       // Toggle note
@@ -173,16 +208,14 @@ export default function FunPage() {
         let current = newNotes[row][col];
         const candidates = current.split("").filter((c) => c !== "");
         if (num === 0) {
-          // 0 = clear all notes
+          // Clear all notes
           newNotes[row][col] = "";
         } else if (candidates.includes(num.toString())) {
-          // remove
           newNotes[row][col] = candidates
             .filter((c) => c !== num.toString())
             .sort()
             .join("");
         } else {
-          // add
           candidates.push(num.toString());
           newNotes[row][col] = candidates.sort().join("");
         }
@@ -192,7 +225,6 @@ export default function FunPage() {
       // Final input
       const newBoard = userBoard.map((r) => [...r]);
       if (num === 0) {
-        // Clear the cell
         newBoard[row][col] = 0;
       } else {
         newBoard[row][col] = num;
@@ -201,38 +233,34 @@ export default function FunPage() {
     }
   };
 
-  // Keyboard input for selected cell
+  // Handle keyboard input
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!selectedCell || isPaused) return;
       const { row, col } = selectedCell;
-      // If locked cell, do nothing
+      // If the cell is locked (original puzzle number), do nothing
       if (board[row][col] !== 0) return;
 
-      // If user typed a digit 1–9
+      // 1-9 => fill or note
       if (e.key >= "1" && e.key <= "9") {
         const digit = parseInt(e.key);
         if (noteMode) {
-          // Toggle note
           setNotes((prevNotes) => {
             const newNotes = prevNotes.map((r) => [...r]);
             let current = newNotes[row][col];
             const candidates = current.split("").filter((c) => c !== "");
             if (candidates.includes(digit.toString())) {
-              // remove
               newNotes[row][col] = candidates
                 .filter((c) => c !== digit.toString())
                 .sort()
                 .join("");
             } else {
-              // add
               candidates.push(digit.toString());
               newNotes[row][col] = candidates.sort().join("");
             }
             return newNotes;
           });
         } else {
-          // Final input
           setUserBoard((prevBoard) => {
             const newBoard = prevBoard.map((r) => [...r]);
             newBoard[row][col] = digit;
@@ -241,17 +269,15 @@ export default function FunPage() {
         }
       }
 
-      // If user typed '0', 'Backspace', or 'Delete' => clear
+      // 0, Backspace, or Delete => clear
       if (e.key === "0" || e.key === "Backspace" || e.key === "Delete") {
         if (noteMode) {
-          // Clear all notes in this cell
           setNotes((prevNotes) => {
             const newNotes = prevNotes.map((r) => [...r]);
             newNotes[row][col] = "";
             return newNotes;
           });
         } else {
-          // Clear final input
           setUserBoard((prevBoard) => {
             const newBoard = prevBoard.map((r) => [...r]);
             newBoard[row][col] = 0;
@@ -262,138 +288,128 @@ export default function FunPage() {
     };
 
     window.addEventListener("keydown", handleKeyDown);
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, [selectedCell, noteMode, isPaused, board]);
 
   return (
-    <div className={styles.container}>
+    <>
+      {/* Render Confetti at the top level, outside the container */}
       {showConfetti && (
         <Confetti
-          width={window.innerWidth}
-          height={window.innerHeight}
+          width={pageSize.width}
+          height={pageSize.height}
           numberOfPieces={400}
           recycle={false}
           gravity={0.3}
         />
       )}
-      <h1 className={styles.title}>Fun Puzzle</h1>
 
-      <div className={styles.timer}>
-        Time: {Math.floor(timer / 60)}:{timer % 60 < 10 ? "0" : ""}
-        {timer % 60}
-      </div>
-      <button onClick={handlePause} className={styles.pauseButton}>
-        {isPaused ? "Resume" : "Pause"}
-      </button>
+      <div className={styles.container}>
+        <h1 className={styles.title}>Fun Puzzle</h1>
+        <div className={styles.timer}>
+          Time: {Math.floor(timer / 60)}:{timer % 60 < 10 ? "0" : ""}
+          {timer % 60}
+        </div>
+        <button onClick={handlePause} className={styles.pauseButton}>
+          {isPaused ? "Resume" : "Pause"}
+        </button>
 
-      <div className={styles.controls}>
-        <button
-          onClick={() => startNewGame("easy")}
-          className={`${styles.difficultyButton} ${
-            difficulty === "easy" ? styles.active : ""
-          }`}
-        >
-          Easy
-        </button>
-        <button
-          onClick={() => startNewGame("medium")}
-          className={`${styles.difficultyButton} ${
-            difficulty === "medium" ? styles.active : ""
-          }`}
-        >
-          Medium
-        </button>
-        <button
-          onClick={() => startNewGame("hard")}
-          className={`${styles.difficultyButton} ${
-            difficulty === "hard" ? styles.active : ""
-          }`}
-        >
-          Hard
-        </button>
-        <button onClick={handleHint} className={styles.hintButton}>
-          Hint
-        </button>
-        <button onClick={handleSubmitSolution} className={styles.submitButton}>
-          Submit Solution ({attempts} tries left)
-        </button>
-        <button
-          onClick={() => setNoteMode((prev) => !prev)}
-          className={styles.noteModeButton}
-        >
-          {noteMode ? "Notes: On" : "Notes: Off"}
-        </button>
-      </div>
-
-      <div className={styles.board}>
-        {board.map((row, rowIndex) => (
-          <div key={rowIndex} className={styles.row}>
-            {row.map((cell, colIndex) => {
-              const solution = decryptSolution(solutionHash);
-              // Highlight if userBoard has a wrong entry (only in easy mode).
-              const isWrong =
-                difficulty === "easy" &&
-                userBoard[rowIndex][colIndex] !== 0 &&
-                userBoard[rowIndex][colIndex] !== solution[rowIndex][colIndex];
-
-              const isSelected =
-                selectedCell &&
-                selectedCell.row === rowIndex &&
-                selectedCell.col === colIndex;
-
-              return (
-                <div
-                  key={colIndex}
-                  className={`${styles.cell} ${isWrong ? styles.wrongInput : ""} ${
-                    isSelected ? styles.selectedCell : ""
-                  }`}
-                  onClick={() => handleCellClick(rowIndex, colIndex)}
-                >
-                  {userBoard[rowIndex][colIndex] !== 0 ? (
-                    userBoard[rowIndex][colIndex]
-                  ) : (
-                    // Show small candidate notes if no final number
-                    <small>{notes[rowIndex][colIndex]}</small>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        ))}
-      </div>
-
-      {/* Dialer (for final input or notes) */}
-      <div className={styles.numberPad}>
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
+        <div className={styles.controls}>
           <button
-            key={num}
-            onClick={() => handleDialerClick(num)}
-            className={styles.numberButton}
+            onClick={() => startNewGame("easy")}
+            className={`${styles.difficultyButton} ${
+              difficulty === "easy" ? styles.active : ""
+            }`}
           >
-            {num}
+            Easy
           </button>
-        ))}
-        {/* "0" to clear the cell or clear the note */}
-        <button onClick={() => handleDialerClick(0)} className={styles.numberButton}>
-          Clear
-        </button>
-      </div>
-
-      {/* Popup on win */}
-      {showPopup && (
-        <div className={styles.popup}>
-          <h2>Congratulations!</h2>
-          <p>You solved the puzzle!</p>
           <button
-            onClick={() => setShowPopup(false)}
-            className={styles.popupCloseButton}
+            onClick={() => startNewGame("medium")}
+            className={`${styles.difficultyButton} ${
+              difficulty === "medium" ? styles.active : ""
+            }`}
           >
-            Close
+            Medium
+          </button>
+          <button
+            onClick={() => startNewGame("hard")}
+            className={`${styles.difficultyButton} ${
+              difficulty === "hard" ? styles.active : ""
+            }`}
+          >
+            Hard
+          </button>
+          <button onClick={handleHint} className={styles.hintButton}>
+            Hint
+          </button>
+          <button onClick={handleSubmitSolution} className={styles.submitButton}>
+            Submit Solution ({attempts} tries left)
+          </button>
+          <button onClick={() => setNoteMode((prev) => !prev)} className={styles.noteModeButton}>
+            {noteMode ? "Notes: On" : "Notes: Off"}
           </button>
         </div>
-      )}
-    </div>
+
+        <div className={styles.board}>
+          {board.map((row, rowIndex) => (
+            <div key={rowIndex} className={styles.row}>
+              {row.map((cell, colIndex) => {
+                const solution = decryptSolution(solutionHash);
+                const isWrong =
+                  difficulty === "easy" &&
+                  userBoard[rowIndex][colIndex] !== 0 &&
+                  userBoard[rowIndex][colIndex] !== solution[rowIndex][colIndex];
+
+                const isSelected =
+                  selectedCell &&
+                  selectedCell.row === rowIndex &&
+                  selectedCell.col === colIndex;
+
+                return (
+                  <div
+                    key={colIndex}
+                    className={`${styles.cell} ${isWrong ? styles.wrongInput : ""} ${
+                      isSelected ? styles.selectedCell : ""
+                    }`}
+                    onClick={() => handleCellClick(rowIndex, colIndex)}
+                  >
+                    {userBoard[rowIndex][colIndex] !== 0 ? (
+                      userBoard[rowIndex][colIndex]
+                    ) : (
+                      <small>{notes[rowIndex][colIndex]}</small>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          ))}
+        </div>
+
+        <div className={styles.numberPad}>
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
+            <button
+              key={num}
+              onClick={() => handleDialerClick(num)}
+              className={styles.numberButton}
+            >
+              {num}
+            </button>
+          ))}
+          <button onClick={() => handleDialerClick(0)} className={styles.numberButton}>
+            Clear
+          </button>
+        </div>
+
+        {showPopup && (
+          <div className={styles.popup}>
+            <h2>Congratulations!</h2>
+            <p>You solved the puzzle!</p>
+            <button onClick={() => setShowPopup(false)} className={styles.popupCloseButton}>
+              Close
+            </button>
+          </div>
+        )}
+      </div>
+    </>
   );
 }
