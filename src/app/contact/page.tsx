@@ -40,7 +40,7 @@ export default function ContactPage() {
       <div className={styles.contactBox}>
         <h1 className={styles.contactTitle}>Contact Me</h1>
         <p className={styles.contactSubtitle}>
-          Let’s connect! Reach out via social media or fill out the form below to send me a message.
+          Below you can find my GitHub page and my LinkedIn profile. Be sure to email me via this contact form :)
         </p>
 
         <div className={styles.socialLinks}>
