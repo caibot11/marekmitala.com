@@ -1,18 +1,21 @@
 /* src/components/layout/Header.module.css */
 
-/* The main header container */
+/* Main header container */
 .header {
-  position: relative;        /* Needed for absolutely positioned neonLine */
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 2rem 2rem 1rem;   /* 2rem top, 1rem bottom, 2rem left/right */
-  z-index: 10;
   background: #1a1a1a;
   box-shadow: 0 0 5px #ffd700;
+  position: relative;
+  z-index: 10;
 }
 
-/* Neon pulse animation for the header's neon line */
+/* Neon line across the top */
+.neonLine {
+  width: 100%;
+  height: 4px;
+  background: #ffd700;
+  animation: neonPulse 2s infinite;
+}
+
 @keyframes neonPulse {
   0%, 100% {
     box-shadow: 0 0 5px #ffd700, 0 0 20px rgba(255, 215, 0, 0.5);
@@ -22,35 +25,31 @@
   }
 }
 
-/* The neon bar across the top */
-.neonLine {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;           /* Thickness of the neon line */
-  background: #ffd700;   /* Neon yellow */
-  z-index: 11;           /* Higher than header's z-index to show on top */
-  animation: neonPulse 2s infinite;
+/* Container for brand + desktop nav + hamburger */
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem;
 }
 
-/* Brand link (site title) */
+/* Brand link styling */
 .brandLink {
-  color: #ffd700;         /* Bright yellow text */
   font-family: "Nyxerin", sans-serif;
+  color: #ffd700;
   font-size: 1.5rem;
-  text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 2px;
+  text-decoration: none;
 }
 
-/* Nav container */
+/* Desktop navigation */
 .nav {
   display: flex;
   gap: 1.5rem;
 }
 
-/* Base style for each nav link */
+/* Base navigation link style */
 .link {
   color: #fff;
   text-decoration: none;
@@ -60,12 +59,72 @@
   transition: color 0.2s ease;
 }
 
-/* Hover highlight */
 .link:hover {
   color: #ffd700;
 }
 
-/* Active link highlight */
-.activeLink {
-  color: #ffd700;
+/* Hamburger menu icon */
+.menuIcon {
+  display: none;
+  flex-direction: column;
+  gap: 0.3rem;
+  cursor: pointer;
+}
+
+.bar {
+  width: 25px;
+  height: 3px;
+  background-color: #fff;
+  transition: all 0.3s ease;
+}
+
+/* Mobile navigation (inline) */
+.mobileNav {
+  display: none;
+  flex-direction: row;
+  justify-content: center;
+  background: #1a1a1a;
+  padding: 0.5rem 0;
+  gap: 1rem;
+}
+
+/* Desktop layout by default */
+@media (min-width: 601px) {
+  .nav {
+    display: flex;
+  }
+}
+
+/* Mobile layout */
+@media (max-width: 600px) {
+  .content {
+    justify-content: center; /* center the brand horizontally */
+    position: relative;
+  }
+
+  /* Hide desktop nav on mobile */
+  .nav {
+    display: none;
+  }
+
+  /* Show hamburger on mobile, position it vertically centered */
+  .menuIcon {
+    display: flex;
+    position: absolute;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .brandLink {
+    margin: 0 auto;
+    font-size: 1.2rem;
+  }
+
+  /* Mobile nav, displayed below content when open */
+  .mobileNav {
+    display: flex;
+    margin-top: 0rem;
+    width: 100%;
+  }
 }

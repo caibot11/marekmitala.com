@@ -6,7 +6,6 @@ import { useSpring, animated } from "@react-spring/web";
 import { useState, useEffect } from "react";
 import styles from "./Hero.module.css";
 
-// Create a custom AnimatedDiv type that accepts children.
 const AnimatedDiv: React.FC<{
   style: any;
   className?: string;
@@ -34,22 +33,23 @@ export default function Hero() {
     <section className={styles.heroSection}>
       {mounted && (
         <AnimatedDiv style={fadeIn} className={styles.overlay}>
-          <h1 className={styles.heroTitle}>Welcome to My Website :)</h1>
+          <h1 className={styles.heroTitle}>Hi, I'm Marek Mitala</h1>
           <p className={styles.heroSubtitle}>
-            Hi, I'm Marek Mitala. This site is a creative space where I share my passion for modern web development and Arduino projects.
-            Explore my work, read about my journey, and get in touch if you want to collaborate!
+            This is my perosnal website where I show my creativity,
+            passion for modern web development and Arduino projects. Check out my{" "}
+            <Link href="/projects" className={styles.inlineLink}>
+              Projects
+            </Link>
+            , learn{" "}
+            <Link href="/about" className={styles.inlineLink}>
+              About Me
+            </Link>
+            , or get in touch via{" "}
+            <Link href="/contact" className={styles.inlineLink}>
+              Contact
+            </Link>
+            .
           </p>
-          <div className={styles.ctaContainer}>
-            <Link href="/about">
-              <button className={styles.ctaButton}>About Me</button>
-            </Link>
-            <Link href="/projects">
-              <button className={styles.ctaButton}>My Projects</button>
-            </Link>
-            <Link href="/contact">
-              <button className={styles.ctaButton}>Contact</button>
-            </Link>
-          </div>
         </AnimatedDiv>
       )}
     </section>

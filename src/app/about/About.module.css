@@ -1,9 +1,11 @@
 /* src/app/about/About.module.css */
 
 .main {
+  margin-top: 3rem; /* Add extra space so it doesn't touch the header */
   padding: 2rem;
   max-width: 900px;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
   background: #222;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
@@ -17,6 +19,7 @@
   text-transform: uppercase;
   letter-spacing: 2px;
   color: #ffd700;
+  text-align: center;
 }
 
 .para {
@@ -80,4 +83,15 @@
   margin: 0 0.5rem;
   display: flex;
   align-items: center;
+}
+
+/* Optional mobile adjustments */
+@media (max-width: 600px) {
+  .main {
+    margin-top: 2rem; /* slightly less for mobile if desired */
+    padding: 1rem;
+  }
+  .mapContainer {
+    padding: 0.5rem;
+  }
 }

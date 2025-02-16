@@ -23,9 +23,9 @@ export default function RootLayout({
         <ParticlesBackground />
         <Header />
         {/* Ensure main content is positioned above the particle canvas */}
-        <div className="id-children">
+     
           {children}
-        </div>
+        
         <Footer />
       </body>
     </html>

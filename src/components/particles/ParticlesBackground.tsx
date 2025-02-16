@@ -20,7 +20,7 @@ export default function ParticlesBackground() {
             opacity: {
               value: 1,
               random: false,
-              anim: { enable: false, speed: 1, opacity_min: 0.1, sync: false },
+              anim: { enable: false, speed: 0.25, opacity_min: 0.1, sync: false },
             },
             size: {
               value: 7.84,

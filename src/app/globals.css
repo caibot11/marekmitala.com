@@ -21,7 +21,7 @@ body {
   width: 100%;
   height: 100%;
   font-family: "Roboto", "Helvetica", sans-serif;
-  /* Removed background-color to let the particle background show */
+  /* Background is set by the particle container */
   color: #e0e0e0;
   line-height: 1.5;
 }
@@ -34,8 +34,16 @@ body {
   --mid-gray: #333;
 }
 
-/* 5. Optional Container (if needed) */
+/* 5. Optional Container */
 .page-transition-container {
   position: relative;
   overflow: hidden;
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+  html,
+  body {
+    font-size: 14px;
+  }
 }
