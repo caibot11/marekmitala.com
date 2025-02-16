@@ -4,7 +4,7 @@
 .container {
     margin-top: 3rem;
     padding: 2rem;
-    max-width: 425px;
+    max-width: 900px;
     margin-left: auto;
     margin-right: auto;
     background: #222;
@@ -14,17 +14,17 @@
     justify-content: center;
   }
   
-/* Confetti on top */
-.confetti {
+  /* Confetti on top */
+  .confetti {
     position: fixed !important;
     top: 0;
     left: 0;
     z-index: 9999;
     pointer-events: none;
-}
-
-/* Title styling */
-.title {
+  }
+  
+  /* Title styling */
+  .title {
     font-family: "Nyxerin", sans-serif;
     font-size: 2rem;
     margin-bottom: 1rem;
@@ -32,22 +32,23 @@
     letter-spacing: 2px;
     color: #ffd700;
     text-align: center;
-}
-
-/* Timer styling */
-.timer {
+  }
+  
+  /* Timer styling */
+  .timer {
     font-size: 1.2rem;
     text-align: center;
     color: #ffd700;
     background: #333;
     padding: 0.5rem 1rem;
     border-radius: 5px;
-    display: block;
-    margin: 0 auto 1rem;
-}
-
-/* Pause button in yellow */
-.pauseButton {
+    display: block;          /* Make it a block element */
+    margin: 0 auto 1rem;     /* Center horizontally + bottom margin */
+    font-size: 20;
+  }
+  
+  /* Pause button in yellow */
+  .pauseButton {
     background: #ffd700;
     color: #000;
     font-weight: bold;
@@ -60,31 +61,34 @@
     letter-spacing: 1px;
     transition: box-shadow 0.2s ease, filter 0.2s ease;
     font-family: inherit;
+  
+    /* Remove margin-left and place it below the timer */
     display: block;
-    margin: 1rem auto 0;
-    margin-bottom: 1rem;
-}
-
-.pauseButton:hover {
+    margin: auto; /* 1rem from the top, centered horizontally */
+    margin: auto;
+    margin-bottom: 5%;
+    
+  }
+  .pauseButton:hover {
     box-shadow: 0 0 10px #ffd700;
     filter: brightness(1.2);
-}
-
-/* Controls area */
-.controls {
+  }
+  
+  /* Controls area */
+  .controls {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* allows wrapping on small screens */
     align-items: center;
     justify-content: center;
     gap: 1rem;
     margin-bottom: 1rem;
-}
-
-/* Universal Button Styling */
-.difficultyButton,
-.hintButton,
-.submitButton,
-.noteModeButton {
+  }
+  
+  /* Universal Button Styling */
+  .difficultyButton,
+  .hintButton,
+  .submitButton,
+  .noteModeButton {
     background: #ffd700;
     color: #000;
     font-weight: bold;
@@ -97,43 +101,42 @@
     letter-spacing: 1px;
     transition: box-shadow 0.2s ease, filter 0.2s ease;
     font-family: inherit;
-}
-
-.difficultyButton:hover,
-.hintButton:hover,
-.submitButton:hover,
-.noteModeButton:hover {
+  }
+  
+  .difficultyButton:hover,
+  .hintButton:hover,
+  .submitButton:hover,
+  .noteModeButton:hover {
     box-shadow: 0 0 10px #ffd700;
     filter: brightness(1.2);
-}
-
-/* Active difficulty highlight */
-.active {
+  }
+  
+  /* Active difficulty highlight */
+  .active {
     background: #ffd700 !important;
     color: #000 !important;
     box-shadow: 0 0 10px #ffd700;
-}
-
-/* Sudoku board container */
-.board {
-    display: flex;             /* keep original flex layout */
+  }
+  
+  /* Sudoku board container */
+  .board {
+    display: flex;
     flex-direction: column;
-    /* width: fit-content; <- remove this line! */
-    width: auto;               /* or 100%, whichever you prefer */
+    width: fit-content;
     margin: 0 auto;
     padding: 5px;
     background: #111;
     border: 3px solid #ffd700;
     border-radius: 6px;
   }
-
-/* Each row is a flex container (desktop default) */
-.row {
-    display: flex; 
+  
+  /* Each row is a flex container */
+  .row {
+    display: flex;
   }
-
-/* Each cell: default styling */
-.cell {
+  
+  /* Each cell: default styling */
+  .cell {
     width: 40px;
     height: 40px;
     text-align: center;
@@ -147,52 +150,51 @@
     position: relative;
     cursor: pointer;
   }
-
-/* Show a highlight for the selected cell */
-.selectedCell {
+  
+  /* Show a highlight for the selected cell */
+  .selectedCell {
     border: 2px solid #ffd700;
     box-shadow: 0 0 5px #ffd700;
-}
-
-/* Locked cells */
-.cell[disabled] {
+  }
+  
+  /* If the cell is locked (from puzzle), you can add a [disabled] attribute if you want. */
+  .cell[disabled] {
     background: #444;
     color: #bbb;
     font-weight: bold;
     cursor: default;
-}
-
-/* 3x3 block separators (desktop) */
-.row .cell:nth-child(3n) {
+  }
+  
+  /* 3x3 block separators */
+  .row .cell:nth-child(3n) {
     border-right: 3px solid #ffd700;
   }
   .row:nth-child(3n) .cell {
     border-bottom: 3px solid #ffd700;
   }
   
-
-/* Wrong input highlight (easy mode only) */
-.wrongInput {
+  /* Wrong input highlight (easy mode only) */
+  .wrongInput {
     background: #ff4d4d;
-}
-
-/* Candidate notes: smaller, light-gray text */
-.cell small {
+  }
+  
+  /* If cell is empty, we display notes in smaller, light-gray text. */
+  .cell small {
     font-size: 0.7rem;
     color: #ccc;
-}
-
-/* Dialer at bottom (for both desktop & mobile) */
-.numberPad {
+  }
+  
+  /* Dialer at bottom (for both desktop & mobile) */
+  .numberPad {
     display: flex;
     justify-content: center;
     gap: 0.5rem;
     margin-top: 1.5rem;
-    flex-wrap: wrap;
-}
-
-/* Number Pad Buttons */
-.numberButton {
+    flex-wrap: wrap; /* better for mobile if needed */
+  }
+  
+  /* Number Pad Buttons */
+  .numberButton {
     width: 50px;
     height: 50px;
     background: #ffd700;
@@ -203,15 +205,15 @@
     font-weight: bold;
     cursor: pointer;
     transition: box-shadow 0.2s ease, filter 0.2s ease;
-}
-
-.numberButton:hover {
+  }
+  
+  .numberButton:hover {
     box-shadow: 0 0 10px #ffd700;
     filter: brightness(1.2);
-}
-
-/* Win Popup */
-.popup {
+  }
+  
+  /* Win Popup */
+  .popup {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -224,9 +226,9 @@
     box-shadow: 0px 0px 15px #ffd700;
     z-index: 1000;
     width: 400px;
-}
-
-.popupCloseButton {
+  }
+  
+  .popupCloseButton {
     background: #ffd700;
     color: #000;
     font-weight: bold;
@@ -240,113 +242,48 @@
     transition: box-shadow 0.2s ease, filter 0.2s ease;
     font-family: inherit;
     margin-top: 1rem;
-}
-
-.popupCloseButton:hover {
+  }
+  
+  .popupCloseButton:hover {
     box-shadow: 0 0 10px #ffd700;
     filter: brightness(1.2);
-}
-
-/* -- MOBILE OVERRIDES -- */
-@media (max-width: 600px) {
+  }
+  
+  /* Mobile Adjustments */
+  @media (max-width: 600px) {
     .container {
-      width: 100%;
-      margin: 2% auto 0 auto;
-      padding: 4%;
-      box-sizing: border-box;
-      background: #222;
-      border-radius: 2%;
-      overflow-x: hidden; /* avoid horizontal scroll bars */
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      margin-top: 1rem;
+      padding: 1rem;
     }
-
-    /* The board spans the container width */
-    .board {
-        /* Switch to a full-width container on mobile */
-        width: 100% !important;
-        margin: 0 auto;
-        padding: 2%;
-        background: #111;
-        box-sizing: border-box;
-        border: 0.5em solid #ffd700; 
-        border-radius: 2%;
-        margin-bottom: 30%;
-      }
-
-    /* Switch each row to a grid with 9 columns to avoid horizontal scrolling */
-    .row {
-        display: grid !important;
-        grid-template-columns: repeat(9, 1fr);
-        gap: 1%;
-        width: 100%;
-        margin: 0 auto;
-        box-sizing: border-box;
-      }
-
-    /* Each cell: fill 1/9 of row, with aspect-ratio for squares */
-    .cell {
-        width: auto;
-        height: auto; 
-        aspect-ratio: 1 / 1;
-        border: 0.2em solid #444;
-        box-sizing: border-box;
-        font-size: 90%;
-        background: #222;
-        color: #e0e0e0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-      }
-
-    /* For 3×3 thick lines in grid mode:
-       every 3rd row in the grid gets a thicker bottom border,
-       and every 3rd column a thicker right border. */
-       .row:nth-child(3n) .cell {
-        border-bottom-width: 0.4em;
-        border-bottom-color: #ffd700;
-      }
-      .cell:nth-child(3n) {
-        border-right-width: 0.4em;
-        border-right-color: #ffd700;
-      }
+    .timer {
+      margin-bottom: 0.5rem;
+    }
     
-
-    /* Mobile number pad pinned at bottom, in a 5-column grid (9 digits + Clear) */
+    .cell {
+      width: 35px;
+      height: 35px;
+      font-size: 1rem;
+    }
+    .numberButton {
+      width: 45px;
+      height: 45px;
+      font-size: 0.9rem;
+    }
     .numberPad {
-        position: fixed;
+        position: relative;
         bottom: 0;
         left: 50%;
         transform: translateX(-50%);
         width: 100%;
-        padding: 4%;
+        padding: 3%;
         box-sizing: border-box;
         background: #222;
-        border-top: 0.5em solid #ffd700;
         display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 3%;
+        grid-template-columns: repeat(5, 0.5fr);
+        gap: 8%;
         z-index: 999;
         margin-top: 0; /* override desktop margin */
       }
-    
 
-    /* Each button fills its grid cell, square with aspect-ratio */
-    .numberButton {
-        width: 100%;
-        aspect-ratio: 1 / 1;
-        background: #ffd700;
-        color: #000;
-        border: none;
-        border-radius: 10%;
-        box-sizing: border-box;
-        font-size: 110%;
-        font-weight: bold;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-}
+  }
+  
