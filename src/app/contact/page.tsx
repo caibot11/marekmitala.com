@@ -9,7 +9,7 @@ export default function ContactPage() {
   const [error, setError] = useState("");
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault(); // Prevent default form submission redirect
+    event.preventDefault(); 
     const form = event.currentTarget;
     const data = new FormData(form);
 

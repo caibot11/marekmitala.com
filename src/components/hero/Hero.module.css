@@ -53,6 +53,11 @@
   justify-content: center;
   gap: 1rem;
 }
+
+.glow {
+  color:  #ffd700;
+  animation: neonGlow 3s infinite;
+}
 @keyframes neonGlow  {
   0% {
     text-shadow: 0 0 5px #ffd700;
@@ -74,7 +79,3 @@
 }
 
 
-.glow {
-  color:  #ffd700;
-  animation: neonGlow 3s infinite;
-}

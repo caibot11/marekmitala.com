@@ -1,6 +1,6 @@
 /* fun.module.css */
 
-/* Overall container */
+
 .container {
     margin-top: 3rem;
     padding: 2rem;
@@ -14,7 +14,7 @@
     justify-content: center;
   }
   
-  /* Confetti on top */
+
   .confetti {
     position: fixed !important;
     top: 0;
@@ -23,7 +23,7 @@
     pointer-events: none;
   }
   
-  /* Title styling */
+
   .title {
     font-family: "Nyxerin", sans-serif;
     font-size: 2rem;
@@ -34,7 +34,7 @@
     text-align: center;
   }
   
-  /* Timer styling */
+
   .timer {
     font-size: 1.2rem;
     text-align: center;
@@ -42,12 +42,12 @@
     background: #333;
     padding: 0.5rem 1rem;
     border-radius: 5px;
-    display: block;          /* Make it a block element */
-    margin: 0 auto 1rem;     /* Center horizontally + bottom margin */
+    display: block;
+    margin: 0 auto 1rem;
     font-size: 20;
   }
   
-  /* Pause button in yellow */
+
   .pauseButton {
     background: #ffd700;
     color: #000;
@@ -61,10 +61,8 @@
     letter-spacing: 1px;
     transition: box-shadow 0.2s ease, filter 0.2s ease;
     font-family: inherit;
-  
-    /* Remove margin-left and place it below the timer */
     display: block;
-    margin: auto; /* 1rem from the top, centered horizontally */
+    margin: auto;
     margin: auto;
     margin-bottom: 5%;
     
@@ -74,17 +72,17 @@
     filter: brightness(1.2);
   }
   
-  /* Controls area */
+
   .controls {
     display: flex;
-    flex-wrap: wrap; /* allows wrapping on small screens */
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     gap: 1rem;
     margin-bottom: 1rem;
   }
   
-  /* Universal Button Styling */
+
   .difficultyButton,
   .hintButton,
   .submitButton,
@@ -111,14 +109,14 @@
     filter: brightness(1.2);
   }
   
-  /* Active difficulty highlight */
+
   .active {
     background: #ffd700 !important;
     color: #000 !important;
     box-shadow: 0 0 10px #ffd700;
   }
   
-  /* Sudoku board container */
+
   .board {
     display: flex;
     flex-direction: column;
@@ -130,12 +128,10 @@
     border-radius: 6px;
   }
   
-  /* Each row is a flex container */
   .row {
     display: flex;
   }
   
-  /* Each cell: default styling */
   .cell {
     width: 40px;
     height: 40px;
@@ -151,13 +147,11 @@
     cursor: pointer;
   }
   
-  /* Show a highlight for the selected cell */
   .selectedCell {
     border: 2px solid #ffd700;
     box-shadow: 0 0 5px #ffd700;
   }
   
-  /* If the cell is locked (from puzzle), you can add a [disabled] attribute if you want. */
   .cell[disabled] {
     background: #444;
     color: #bbb;
@@ -165,7 +159,6 @@
     cursor: default;
   }
   
-  /* 3x3 block separators */
   .row .cell:nth-child(3n) {
     border-right: 3px solid #ffd700;
   }
@@ -173,27 +166,23 @@
     border-bottom: 3px solid #ffd700;
   }
   
-  /* Wrong input highlight (easy mode only) */
   .wrongInput {
     background: #ff4d4d;
   }
   
-  /* If cell is empty, we display notes in smaller, light-gray text. */
   .cell small {
     font-size: 0.7rem;
     color: #ccc;
   }
   
-  /* Dialer at bottom (for both desktop & mobile) */
   .numberPad {
     display: flex;
     justify-content: center;
     gap: 0.5rem;
     margin-top: 1.5rem;
-    flex-wrap: wrap; /* better for mobile if needed */
+    flex-wrap: wrap;
   }
   
-  /* Number Pad Buttons */
   .numberButton {
     width: 50px;
     height: 50px;
@@ -212,7 +201,6 @@
     filter: brightness(1.2);
   }
   
-  /* Win Popup */
   .popup {
     position: fixed;
     top: 50%;
@@ -249,7 +237,6 @@
     filter: brightness(1.2);
   }
   
-  /* Mobile Adjustments */
   @media (max-width: 600px) {
     .container {
       margin-top: 1rem;
@@ -282,7 +269,7 @@
         grid-template-columns: repeat(5, 0.5fr);
         gap: 8%;
         z-index: 999;
-        margin-top: 0; /* override desktop margin */
+        margin-top: 0;
       }
 
   }

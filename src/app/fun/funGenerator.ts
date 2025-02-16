@@ -10,19 +10,16 @@ export function getSolution(board: number[][]): number[][] {
     return solveSudoku(board);
 }
 
-// Securely encrypt solution (prevents easy access)
 export function encryptSolution(solution: number[][]): string {
     return btoa(JSON.stringify(solution));
 }
 
-// Decrypts the solution (internal use)
+
 export function decryptSolution(hash: string): number[][] {
     return JSON.parse(atob(hash));
 }
 
-/* -----------------------------------------------
-   Step 1: Generate a full valid Sudoku solution
--------------------------------------------------- */
+
 function generateSudokuSolution(): number[][] {
     const board: number[][] = Array.from({ length: 9 }, () => Array(9).fill(0));
     
@@ -63,9 +60,7 @@ function generateSudokuSolution(): number[][] {
     return board;
 }
 
-/* ------------------------------------------------------
-   Step 2: Remove numbers from the solution to create a puzzle
---------------------------------------------------------- */
+
 function removeNumbersForDifficulty(solution: number[][], difficulty: "easy" | "medium" | "hard"): number[][] {
     const puzzle = solution.map(row => [...row]);
     const removeCount = difficulty === "easy" ? 35 : difficulty === "medium" ? 45 : 55;
@@ -83,9 +78,7 @@ function removeNumbersForDifficulty(solution: number[][], difficulty: "easy" | "
     return puzzle;
 }
 
-/* ------------------------------------------------------
-   Step 3: Solve the Sudoku (used for hint system)
---------------------------------------------------------- */
+
 function solveSudoku(board: number[][]): number[][] {
     const solvedBoard = board.map(row => [...row]);
 

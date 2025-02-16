@@ -9,7 +9,6 @@
 
 }
 
-/* Overall page title uses the custom font */
 .title {
   font-family: "Nyxerin", sans-serif;
   font-size: 2rem;
@@ -47,10 +46,8 @@
   transform: translateY(-5px);
 }
 
-/* Card title now uses default font (or your site default) */
 .cardTitle {
   font-size: 1.8rem;
-  /* Removing the custom font, uppercase and letter-spacing for consistency */
   font-family: inherit;
   text-transform: none;
   letter-spacing: normal;

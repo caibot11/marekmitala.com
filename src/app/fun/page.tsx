@@ -27,12 +27,10 @@ export default function FunPage() {
   const [isPaused, setIsPaused] = useState(false);
   const [selectedCell, setSelectedCell] = useState<{ row: number; col: number } | null>(null);
 
-  // Track the entire page size to let confetti fill the page
   const [pageSize, setPageSize] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
     function updatePageSize() {
-      // This approach ensures we measure the full page, including any scrolling area
       const body = document.body;
       const html = document.documentElement;
 
@@ -55,14 +53,10 @@ export default function FunPage() {
       setPageSize({ width, height });
     }
 
-    // Run initially
     updatePageSize();
 
-    // Update on resize
     window.addEventListener("resize", updatePageSize);
 
-    // If your puzzle’s layout changes height dynamically,
-    // you might call updatePageSize() after those changes too.
 
     return () => window.removeEventListener("resize", updatePageSize);
   }, []);
@@ -100,7 +94,6 @@ export default function FunPage() {
     }
   }, []);
 
-  // Timer logic: only increments if not paused.
   useEffect(() => {
     if (!isPaused) {
       const interval = setInterval(() => setTimer((prev) => prev + 1), 1000);
@@ -108,7 +101,7 @@ export default function FunPage() {
     }
   }, [isPaused]);
 
-  // Save game state whenever relevant changes occur.
+
   useEffect(() => {
     if (isClient) {
       localStorage.setItem("sudokuBoard", JSON.stringify(board));
@@ -156,7 +149,7 @@ export default function FunPage() {
     if (JSON.stringify(userBoard) === JSON.stringify(solution)) {
       setShowConfetti(true);
       setShowPopup(true);
-      setIsPaused(true); // Stop timer once puzzle is solved.
+      setIsPaused(true);
     } else {
       setAttempts((prev) => prev - 1);
       alert(`Incorrect! You have ${attempts - 1} attempts remaining.`);
@@ -190,7 +183,6 @@ export default function FunPage() {
 
   const handleCellClick = (row: number, col: number) => {
     if (isPaused) return;
-    // If the cell is locked (original puzzle number), do nothing.
     if (board[row][col] !== 0) return;
     setSelectedCell({ row, col });
   };
@@ -198,17 +190,14 @@ export default function FunPage() {
   const handleDialerClick = (num: number) => {
     if (!selectedCell) return;
     const { row, col } = selectedCell;
-    // If the puzzle had a pre-filled value, ignore
     if (board[row][col] !== 0) return;
 
     if (noteMode) {
-      // Toggle note
       setNotes((prevNotes) => {
         const newNotes = prevNotes.map((r) => [...r]);
         let current = newNotes[row][col];
         const candidates = current.split("").filter((c) => c !== "");
         if (num === 0) {
-          // Clear all notes
           newNotes[row][col] = "";
         } else if (candidates.includes(num.toString())) {
           newNotes[row][col] = candidates
@@ -222,7 +211,7 @@ export default function FunPage() {
         return newNotes;
       });
     } else {
-      // Final input
+  
       const newBoard = userBoard.map((r) => [...r]);
       if (num === 0) {
         newBoard[row][col] = 0;
@@ -233,15 +222,14 @@ export default function FunPage() {
     }
   };
 
-  // Handle keyboard input
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!selectedCell || isPaused) return;
       const { row, col } = selectedCell;
-      // If the cell is locked (original puzzle number), do nothing
       if (board[row][col] !== 0) return;
 
-      // 1-9 => fill or note
+  
       if (e.key >= "1" && e.key <= "9") {
         const digit = parseInt(e.key);
         if (noteMode) {
@@ -269,7 +257,6 @@ export default function FunPage() {
         }
       }
 
-      // 0, Backspace, or Delete => clear
       if (e.key === "0" || e.key === "Backspace" || e.key === "Delete") {
         if (noteMode) {
           setNotes((prevNotes) => {

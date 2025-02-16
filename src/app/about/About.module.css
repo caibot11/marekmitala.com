@@ -8,11 +8,10 @@
   background: #222;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  box-sizing: border-box; /* helps avoid overflow on padding */
+  box-sizing: border-box; 
   position: relative;
   text-align: center;
-  /* If something inside is causing overflow, you could also do: */
-  /* overflow-x: hidden; */
+ 
 }
 
 .title {
@@ -29,7 +28,6 @@
   color: #e0e0e0;
   line-height: 1.6;
   margin-bottom: 1rem;
-  /* Allow text to wrap if it’s really long or has no spaces */
   overflow-wrap: break-word;
   word-wrap: break-word;
 }
@@ -48,11 +46,12 @@
 }
 
 .mapTitle {
-  margin-bottom: 0.5rem;
-  font-size: 1.2rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  font-size: 1.8rem;
+  font-family: inherit;
+  text-transform: none;
+  letter-spacing: normal;
   color: #ffd700;
+  margin-bottom: 1rem;
 }
 
 .mapLink {
@@ -91,12 +90,11 @@
   align-items: center;
 }
 
-/* Optional mobile adjustments */
+
 @media (max-width: 600px) {
   .main {
     margin-top: 2rem;
     padding: 1rem;
-    /* Optionally shrink side margins so the background edge is visible */
     width: 95%;
     margin-left: auto;
     margin-right: auto;

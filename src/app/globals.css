@@ -1,6 +1,5 @@
 /* src/app/globals.css */
 
-/* 1. Load custom font */
 @font-face {
   font-family: "Nyxerin";
   src: url("/fonts/Nyxerin-Regular.otf") format("opentype");
@@ -8,20 +7,17 @@
   font-weight: 400;
 }
 
-/* 2. Minimal Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* 3. Global Body Styling */
 html,
 body {
   width: 100%;
   height: 100%;
   font-family: "Roboto", "Helvetica", sans-serif;
-  /* Background is set by the particle container */
   color: #e0e0e0;
   line-height: 1.5;
   display: flex;
@@ -29,7 +25,6 @@ body {
 
 }
 
-/* 4. Color Variables */
 :root {
   --accent-color: #d34f4f;
   --dark-gray: #1f1f1f;
@@ -37,13 +32,11 @@ body {
   --mid-gray: #333;
 }
 
-/* 5. Optional Container */
 .page-transition-container {
   position: relative;
   overflow: hidden;
 }
 
-/* Mobile adjustments */
 @media (max-width: 600px) {
   html,
   body {
