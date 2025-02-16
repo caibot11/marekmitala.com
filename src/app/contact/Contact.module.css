@@ -1,28 +1,37 @@
 /* app/contact/Contact.module.css */
 
+/* Overall container */
 .contactContainer {
   margin-top: 3rem;
   margin-left: auto;
   margin-right: auto;
   max-width: 500px;
-  
-  display: flex;
-  align-items: center;
-  justify-content: center;
   padding: 2rem;
   text-align: center;
   position: relative;
 }
 
-.contactBox {
-  background: #222;               /* Dark background behind the contact info */
-  border-radius: 8px;            /* Rounded corners */
-  padding: 2rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  max-width: 600px;              /* Limit how wide the box can be */
-  width: 100%;                   /* Ensures the box shrinks on small screens */
+/* Center the container on larger screens */
+@media (min-width: 768px) {
+  .contactContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
+/* Contact Box styling */
+.contactBox {
+  background: #222;               /* Dark background behind the contact info */
+  border-radius: 8px;             /* Rounded corners */
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  max-width: 600px;               /* Limit how wide the box can be */
+  width: 100%;                    /* Ensures the box shrinks on small screens */
+  margin: 0 auto;
+}
+
+/* Contact Title */
 .contactTitle {
   font-family: "Nyxerin", sans-serif;
   font-size: 2rem;
@@ -32,12 +41,14 @@
   margin-bottom: 1rem;
 }
 
+/* Contact Subtitle */
 .contactSubtitle {
   color: #ccc;
   line-height: 1.6;
   margin-bottom: 2rem;
 }
 
+/* Social Links styling */
 .socialLinks {
   display: flex;
   gap: 1rem;
@@ -46,6 +57,7 @@
   margin-bottom: 2rem;
 }
 
+/* Contact Button */
 .contactButton {
   background: #ffd700;
   color: #000;
@@ -59,4 +71,49 @@
   letter-spacing: 1px;
   transition: box-shadow 0.2s ease, filter 0.2s ease;
   font-family: inherit;
+}
+
+/* Hover state for the contact button */
+.contactButton:hover {
+  box-shadow: 0 0 10px #ffd700;
+  filter: brightness(1.1);
+}
+
+/* Optional: Styling for input fields and textarea if you add a form */
+.inputField,
+.textArea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #444;
+  border-radius: 4px;
+  background: #333;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.textArea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* Responsive adjustments for mobile devices */
+@media (max-width: 600px) {
+  .contactContainer {
+    padding: 1rem;
+  }
+  .contactBox {
+    padding: 1.5rem;
+  }
+  .contactTitle {
+    font-size: 1.75rem;
+  }
+  .contactButton {
+    padding: 0.7rem 1rem;
+    font-size: 0.9rem;
+  }
+  .inputField,
+  .textArea {
+    font-size: 0.9rem;
+  }
 }

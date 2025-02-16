@@ -1,29 +1,94 @@
 // app/contact/page.tsx
-import Link from "next/link";
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import styles from "./Contact.module.css";
 
 export default function ContactPage() {
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
+
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault(); // Prevent default form submission redirect
+    const form = event.currentTarget;
+    const data = new FormData(form);
+
+    try {
+      const response = await fetch("https://formspree.io/f/mgvonqyd", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+        },
+        body: data,
+      });
+      if (response.ok) {
+        form.reset();
+        setSubmitted(true);
+        setError("");
+      } else {
+        const result = await response.json();
+        setError(result.error || "Submission failed, please try again.");
+      }
+    } catch (err) {
+      console.error("Error submitting the form", err);
+      setError("Submission failed, please try again later.");
+    }
+  }
+
   return (
     <main className={styles.contactContainer}>
       <div className={styles.contactBox}>
         <h1 className={styles.contactTitle}>Contact Me</h1>
         <p className={styles.contactSubtitle}>
-          Let’s connect! Reach out via social media or send me an email.
+          Let’s connect! Reach out via social media or fill out the form below to send me a message.
         </p>
 
         <div className={styles.socialLinks}>
-          <Link href="https://github.com/caibot11" target="_blank">
+          <a href="https://github.com/caibot11" target="_blank" rel="noopener noreferrer">
             <button className={styles.contactButton}>GitHub</button>
-          </Link>
-          <Link href="https://www.linkedin.com/in/yourProfile/" target="_blank">
+          </a>
+          <a href="https://www.linkedin.com/in/yourProfile/" target="_blank" rel="noopener noreferrer">
             <button className={styles.contactButton}>LinkedIn</button>
-          </Link>
+          </a>
         </div>
 
-        <Link href="mailto:marek.mitala04@gmail.com?subject=Hello%20Marek&body=I%20would%20like%20to%20connect">
-        <button className={styles.contactButton}>Email Me</button>
-      </Link>
+        {submitted ? (
+          <p className={styles.thankYouMessage}>Thank you for your message!</p>
+        ) : (
+          <form className={styles.contactForm} onSubmit={handleSubmit}>
+            {/* Honeypot field to deter spam bots */}
+            <div style={{ display: "none" }}>
+              <label>
+                Leave this field empty:
+                <input type="text" name="honeypot" />
+              </label>
+            </div>
+            <input
+              type="text"
+              name="name"
+              placeholder="Your Name"
+              className={styles.inputField}
+              required
+            />
+            <input
+              type="email"
+              name="_replyto"
+              placeholder="Your Email"
+              className={styles.inputField}
+              required
+            />
+            <textarea
+              name="message"
+              placeholder="Your Message"
+              className={styles.textArea}
+              required
+            />
+            {error && <p className={styles.errorMessage}>{error}</p>}
+            <button type="submit" className={styles.contactButton}>
+              Send Message
+            </button>
+          </form>
+        )}
       </div>
     </main>
   );
