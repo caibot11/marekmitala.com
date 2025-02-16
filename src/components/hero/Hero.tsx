@@ -33,14 +33,15 @@ export default function Hero() {
     <section className={styles.heroSection}>
       {mounted && (
         <AnimatedDiv style={fadeIn} className={styles.overlay}>
-          <h1 className={styles.heroTitle}>Hi, I'm Marek Mitala</h1>
+          <h1 className={styles.heroTitle}>
+            Hi, I'm <span className={styles.glow}>Marek Mitala</span>
+          </h1>
           <p className={styles.heroSubtitle}>
-            This is my perosnal website where I show my creativity,
-            passion for modern web development and Arduino projects. Check out my{" "}
+            This is my perosnal website where I show my creativity, passion for modern web development and Arduino projects. Check out my{" "}
             <Link href="/projects" className={styles.inlineLink}>
               Projects
             </Link>
-            , learn{" "}
+            , learn more {" "}
             <Link href="/about" className={styles.inlineLink}>
               About Me
             </Link>
