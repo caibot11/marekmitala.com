@@ -11,9 +11,10 @@
     "dependencies": {
         "@react-spring/web": "^9.7.5",
         "framer-motion": "^12.4.0",
-        "next": "^15.2.0-canary.61",
+        "next": "^15.2.0-canary.62",
         "particles.js": "^2.0.0",
         "react": "18.2.0",
+        "react-confetti": "^6.2.2",
         "react-dom": "18.2.0",
         "react-icons": "^5.4.0",
         "stats.js": "^0.17.0"

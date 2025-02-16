@@ -1,0 +1,283 @@
+/* fun.module.css */
+
+/* Overall container */
+.container {
+    margin-top: 3rem;
+    padding: 2rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    background: #222;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    position: relative;
+    justify-content: center;
+}
+
+/* Confetti on top */
+.confetti {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+/* Title styling */
+.title {
+    font-family: "Nyxerin", sans-serif;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #ffd700;
+    text-align: center;
+}
+
+/* Timer styling */
+.timer {
+    font-size: 1.2rem;
+    text-align: center;
+    color: #ffd700;
+    background: #333;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    display: block;
+    margin: 0 auto 1rem;
+}
+
+/* Pause button in yellow */
+.pauseButton {
+    background: #ffd700;
+    color: #000;
+    font-weight: bold;
+    padding: 0.8rem 1.2rem;
+    border: 2px solid #ffd700;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 0 5px #ffd700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: box-shadow 0.2s ease, filter 0.2s ease;
+    font-family: inherit;
+    display: block;
+    margin: 1rem auto 0;
+    margin-bottom: 1rem;
+}
+
+.pauseButton:hover {
+    box-shadow: 0 0 10px #ffd700;
+    filter: brightness(1.2);
+}
+
+/* Controls area */
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Universal Button Styling */
+.difficultyButton,
+.hintButton,
+.submitButton,
+.noteModeButton {
+    background: #ffd700;
+    color: #000;
+    font-weight: bold;
+    padding: 0.8rem 1.2rem;
+    border: 2px solid #ffd700;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 0 5px #ffd700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: box-shadow 0.2s ease, filter 0.2s ease;
+    font-family: inherit;
+}
+
+.difficultyButton:hover,
+.hintButton:hover,
+.submitButton:hover,
+.noteModeButton:hover {
+    box-shadow: 0 0 10px #ffd700;
+    filter: brightness(1.2);
+}
+
+/* Active difficulty highlight */
+.active {
+    background: #ffd700 !important;
+    color: #000 !important;
+    box-shadow: 0 0 10px #ffd700;
+}
+
+/* Sudoku board container */
+.board {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin: 0 auto;
+    padding: 5px;
+    background: #111;
+    border: 3px solid #ffd700;
+    border-radius: 6px;
+}
+
+/* Each row is a flex container */
+.row {
+    display: flex;
+}
+
+/* Each cell: default styling */
+.cell {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    font-size: 1.1rem;
+    background: #222;
+    color: #e0e0e0;
+    border: 1px solid #444;
+    font-weight: bold;
+    outline: none;
+    transition: background 0.2s ease;
+    position: relative;
+    cursor: pointer;
+}
+
+/* Show a highlight for the selected cell */
+.selectedCell {
+    border: 2px solid #ffd700;
+    box-shadow: 0 0 5px #ffd700;
+}
+
+/* Locked cells */
+.cell[disabled] {
+    background: #444;
+    color: #bbb;
+    font-weight: bold;
+    cursor: default;
+}
+
+/* 3x3 block separators */
+.row .cell:nth-child(3n) {
+    border-right: 3px solid #ffd700;
+}
+.row:nth-child(3n) .cell {
+    border-bottom: 3px solid #ffd700;
+}
+
+/* Wrong input highlight (easy mode only) */
+.wrongInput {
+    background: #ff4d4d;
+}
+
+/* Candidate notes: smaller, light-gray text */
+.cell small {
+    font-size: 0.7rem;
+    color: #ccc;
+}
+
+/* Dialer at bottom (for both desktop & mobile) */
+.numberPad {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+
+/* Number Pad Buttons */
+.numberButton {
+    width: 50px;
+    height: 50px;
+    background: #ffd700;
+    color: #000;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.numberButton:hover {
+    box-shadow: 0 0 10px #ffd700;
+    filter: brightness(1.2);
+}
+
+/* Win Popup */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: #ffd700;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 0px 15px #ffd700;
+    z-index: 1000;
+    width: 400px;
+}
+
+.popupCloseButton {
+    background: #ffd700;
+    color: #000;
+    font-weight: bold;
+    padding: 0.8rem 1.2rem;
+    border: 2px solid #ffd700;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 0 5px #ffd700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: box-shadow 0.2s ease, filter 0.2s ease;
+    font-family: inherit;
+    margin-top: 1rem;
+}
+
+.popupCloseButton:hover {
+    box-shadow: 0 0 10px #ffd700;
+    filter: brightness(1.2);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 600px) {
+    .container {
+        margin-top: 1rem;
+        padding: 1rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .timer {
+        margin-bottom: 0.5rem;
+        font-size: 1.4rem;
+    }
+    .pauseButton {
+        margin: 0.5rem auto;
+        display: block;
+        font-size: 1rem;
+        width: 80%;
+    }
+    .controls {
+        flex-direction: row;
+        gap: 0.5rem;
+    }
+    .cell {
+        width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
+    }
+    .numberPad {
+        gap: 0.5rem;
+    }
+    .numberButton {
+        width: 55px;
+        height: 55px;
+        font-size: 1rem;
+    }
+}

@@ -30,6 +30,10 @@ export default function Header() {
           <Link href="/contact" className={styles.link}>
             Contact
           </Link>
+          {/* New Fun page link with rainbow effect */}
+          <Link href="/fun" className={`${styles.link} ${styles.rainbowLink}`}>
+            Fun
+          </Link>
         </nav>
         {/* Hamburger icon for mobile */}
         <div className={styles.menuIcon} onClick={toggleMenu}>
@@ -49,6 +53,10 @@ export default function Header() {
           </Link>
           <Link href="/contact" className={styles.link}>
             Contact
+          </Link>
+          {/* New Fun page link for mobile as well */}
+          <Link href="/fun" className={`${styles.link} ${styles.rainbowLink}`}>
+            Fun
           </Link>
         </nav>
       )}
