@@ -13,7 +13,7 @@ export default function ContactPage() {
         </p>
 
         <div className={styles.socialLinks}>
-          <Link href="https://github.com/yourProfile" target="_blank">
+          <Link href="https://github.com/caibot11" target="_blank">
             <button className={styles.contactButton}>GitHub</button>
           </Link>
           <Link href="https://www.linkedin.com/in/yourProfile/" target="_blank">
@@ -21,9 +21,9 @@ export default function ContactPage() {
           </Link>
         </div>
 
-        <Link href="mailto:youremail@example.com?subject=Hello">
-          <button className={styles.contactButton}>Email Me</button>
-        </Link>
+        <Link href="mailto:marek.mitala04@gmail.com?subject=Hello%20Marek&body=I%20would%20like%20to%20connect">
+        <button className={styles.contactButton}>Email Me</button>
+      </Link>
       </div>
     </main>
   );
