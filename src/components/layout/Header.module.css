@@ -57,6 +57,12 @@
   color: #ffd700;
 }
 
+/* Active link style */
+.active {
+  color: #ffd700; /* change the text color */
+  text-shadow: 0 0 6px #ffd700; /* add a subtle glow */
+}
+
 .menuIcon {
   display: none;
   flex-direction: column;
@@ -79,6 +85,7 @@
   padding: 0.5rem 0;
   gap: 1rem;
 }
+
 @keyframes rainbow {
   0%   { color: red; }
   16%  { color: orange; }
@@ -99,7 +106,6 @@
     justify-content: center;
     position: relative;
   }
-
 
   .nav {
     display: none;
