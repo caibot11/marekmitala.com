@@ -272,6 +272,7 @@
         box-sizing: border-box;
         border: 0.5em solid #ffd700; 
         border-radius: 2%;
+        margin-bottom: 30%;
       }
 
     /* Switch each row to a grid with 9 columns to avoid horizontal scrolling */
