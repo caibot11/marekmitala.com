@@ -305,7 +305,7 @@ export default function FunPage() {
       )}
 
       <div className={styles.container}>
-        <h1 className={styles.title}>Fun Puzzle</h1>
+        <h1 className={styles.title}>sudoku</h1>
         <div className={styles.timer}>
           Time: {Math.floor(timer / 60)}:{timer % 60 < 10 ? "0" : ""}
           {timer % 60}
