@@ -39,7 +39,8 @@
 }
 
 .mapContainer {
-  flex: 1 1 400px;
+  flex: 1 1 0;
+  min-width: 400px;
   background: #141414;
   padding: 1rem;
   border-radius: 4px;

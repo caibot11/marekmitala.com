@@ -5,8 +5,22 @@ import { useEffect } from "react";
 
 export default function ParticlesBackground() {
   useEffect(() => {
+    // Attempt to destroy any existing particles instance.
+    if (
+      typeof window !== "undefined" &&
+      (window as any).pJSDom &&
+      (window as any).pJSDom.length
+    ) {
+      (window as any).pJSDom[0].pJS.fn.vendors.destroypJS();
+      (window as any).pJSDom = [];
+    }
+
+    // Dynamically import particles.js and initialize it.
     import("particles.js").then(() => {
-      if (typeof window !== "undefined" && (window as any).particlesJS) {
+      if (
+        typeof window !== "undefined" &&
+        (window as any).particlesJS
+      ) {
         (window as any).particlesJS("particles-js", {
           particles: {
             number: { value: 30, density: { enable: true, value_area: 800 } },
@@ -20,7 +34,7 @@ export default function ParticlesBackground() {
             opacity: {
               value: 1,
               random: false,
-              anim: { enable: false, speed:1, opacity_min: 0.1, sync: false },
+              anim: { enable: false, speed: 1, opacity_min: 0.1, sync: false },
             },
             size: {
               value: 7.84,
@@ -64,6 +78,22 @@ export default function ParticlesBackground() {
         });
       }
     });
+
+    // Cleanup: destroy particles instance and remove the canvas element.
+    return () => {
+      if (typeof window !== "undefined") {
+        // Attempt to destroy instance via pJSDom
+        if ((window as any).pJSDom && (window as any).pJSDom.length) {
+          (window as any).pJSDom[0].pJS.fn.vendors.destroypJS();
+          (window as any).pJSDom = [];
+        }
+        // Manually remove canvas from container.
+        const container = document.getElementById("particles-js");
+        if (container) {
+          container.innerHTML = "";
+        }
+      }
+    };
   }, []);
 
   return (
@@ -76,7 +106,6 @@ export default function ParticlesBackground() {
         width: "100%",
         height: "100%",
         backgroundColor: "#1f1f1f",
-        
       }}
     />
   );

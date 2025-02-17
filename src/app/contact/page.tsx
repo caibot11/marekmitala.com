@@ -36,6 +36,7 @@ export default function ContactPage() {
   }
 
   return (
+    
     <main className={styles.contactContainer}>
       <div className={styles.contactBox}>
         <h1 className={styles.contactTitle}>Contact Me</h1>
