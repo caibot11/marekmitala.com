@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
+import { GoogleMap, OverlayView, useJsApiLoader } from "@react-google-maps/api";
 import { multiBrandNetworkStyle } from "./mapStyles";
 
 const containerStyle = {
@@ -16,22 +16,12 @@ export default function CustomMap({ lat, lng }) {
   if (loadError) return <div>Error loading maps</div>;
   if (!isLoaded) return <div>Loading Maps...</div>;
 
+  const center = { lat, lng };
+
+  // Keep your code-based styling
   const mapOptions = {
     styles: multiBrandNetworkStyle,
     disableDefaultUI: true,
-  };
-
-  const center = { lat, lng };
-
-  // Define a custom marker icon using an SVG path
-  const markerIcon = {
-    path: "M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z",
-    fillColor: "#ff0000",
-    fillOpacity: 1,
-    strokeWeight: 0,
-    scale: 1.5,
-    anchor: new window.google.maps.Point(12, 24),
-
   };
 
   return (
@@ -41,7 +31,23 @@ export default function CustomMap({ lat, lng }) {
       zoom={5}
       options={mapOptions}
     >
-      <Marker position={center} icon={markerIcon} />
+      <OverlayView
+        position={center}
+        mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
+      >
+        {/* Reference the SVG from the public folder */}
+        <img
+          src="/images/map-marker-svgrepo-com.svg"
+          alt="Custom Marker"
+          style={{
+            // Center the bottom tip of the marker at the lat/lng coordinate
+            transform: "translate(-50%, -100%)",
+            cursor: "pointer",
+            width: "32px",  // Adjust width/height as needed
+            height: "32px",
+          }}
+        />
+      </OverlayView>
     </GoogleMap>
   );
 }
