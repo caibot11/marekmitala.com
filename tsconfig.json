@@ -32,7 +32,8 @@
     "types": [
       "react",
       "react-dom"
-    ]
+    ],
+    "allowImportingTsExtensions": true
   },
   "include": [
     "**/*.ts",

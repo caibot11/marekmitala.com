@@ -1,5 +1,3 @@
-// src/app/fun/puzzleGenerator.ts
-
 export function generatePuzzle(difficulty: "easy" | "medium" | "hard"): number[][] {
     const solution = generateSudokuSolution();
     const puzzle = removeNumbersForDifficulty(solution, difficulty);
@@ -42,7 +40,7 @@ function generateSudokuSolution(): number[][] {
             for (let col = 0; col < 9; col++) {
                 if (board[row][col] === 0) {
                     const numbers = [...Array(9)].map((_, i) => i + 1).sort(() => Math.random() - 0.5);
-                    for (let num of numbers) {
+                    for (const num of numbers) {
                         if (isValid(board, row, col, num)) {
                             board[row][col] = num;
                             if (fillBoard(board)) return true;
@@ -116,4 +114,4 @@ function solveSudoku(board: number[][]): number[][] {
 
     solve(solvedBoard);
     return solvedBoard;
-}
+} 

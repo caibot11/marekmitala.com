@@ -5,18 +5,16 @@ import Link from "next/link";
 import { useSpring, animated } from "@react-spring/web";
 import { useState, useEffect } from "react";
 import styles from "./Hero.module.css";
+import { FaGithub, FaLinkedin, FaEnvelope, FaPhone } from "react-icons/fa";
 
-const AnimatedDiv: React.FC<{
-  style: any;
-  className?: string;
-  children: React.ReactNode;
-}> = animated.div as unknown as React.FC<{
-  style: any;
-  className?: string;
-  children: React.ReactNode;
-}>;
+interface HeroProps {
+  onContactClick: () => void;
+  onAboutClick: () => void;
+  onProjectsClick: () => void;
+  onFunClick: () => void;
+}
 
-export default function Hero() {
+const Hero: React.FC<HeroProps> = ({ onContactClick, onAboutClick, onProjectsClick, onFunClick }) => {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -32,9 +30,9 @@ export default function Hero() {
   return (
     <section className={styles.heroSection}>
       {mounted && (
-        <AnimatedDiv style={fadeIn} className={styles.overlay}>
+        <animated.div style={fadeIn} className={styles.overlay}>
           <h1 className={styles.heroTitle}>
-            Hi, I'm <span className={styles.glow}>Marek Mitala</span>
+            Hi, I&apos;m <span className={styles.glow}>Marek Mitala</span>
           </h1>
           <p className={styles.heroSubtitle}>
             This is my perosnal website where I show my creativity, passion for modern web development and Arduino projects. Check out my{" "}
@@ -51,8 +49,10 @@ export default function Hero() {
             </Link>
             .
           </p>
-        </AnimatedDiv>
+        </animated.div>
       )}
     </section>
   );
 }
+
+export default Hero;

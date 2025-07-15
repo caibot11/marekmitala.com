@@ -18,9 +18,19 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
+  const handleContactClick = () => {};
+  const handleAboutClick = () => {};
+  const handleProjectsClick = () => {};
+  const handleFunClick = () => {};
+
   return (
     <main>
-      <Hero />
+      <Hero 
+        onContactClick={handleContactClick}
+        onAboutClick={handleAboutClick}
+        onProjectsClick={handleProjectsClick}
+        onFunClick={handleFunClick}
+      />
     </main>
   );
 }

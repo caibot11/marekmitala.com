@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import AboutClient from "./AboutClient";
+import AboutClient from "./AboutClient.tsx";
 
 export const metadata: Metadata = {
   title: 'About Me',

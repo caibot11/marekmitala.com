@@ -2,17 +2,17 @@ import type { Metadata } from "next";
 import FunClient from "./FunClient";
 
 export const metadata: Metadata = {
-  title: 'Fun - Sudoku Game',
-  description: 'Play Sudoku on Marek Mitala\'s portfolio site. Test your puzzle-solving skills with easy, medium, and hard difficulties.',
-  keywords: ['sudoku', 'game', 'fun', 'puzzle', 'Marek Mitala'],
+  title: "Fun - Games",
+  description: "Play classic games like Sudoku and Minesweeper on Marek Mitala's portfolio site. Test your puzzle-solving skills.",
+  keywords: ["sudoku", "minesweeper", "game", "fun", "puzzle", "Marek Mitala"],
   openGraph: {
-    title: 'Fun - Sudoku Game | Marek Mitala',
-    description: 'Play Sudoku on Marek Mitala\'s portfolio site. Test your puzzle-solving skills with easy, medium, and hard difficulties.',
-    url: 'https://marekmitala.com/fun',
+    title: "Fun - Games | Marek Mitala",
+    description: "Play classic games like Sudoku and Minesweeper on Marek Mitala's portfolio site.",
+    url: "https://marekmitala.com/fun",
   },
   twitter: {
-    title: 'Fun - Sudoku Game | Marek Mitala',
-    description: 'Play Sudoku on Marek Mitala\'s portfolio site. Test your puzzle-solving skills with easy, medium, and hard difficulties.',
+    title: "Fun - Games | Marek Mitala",
+    description: "Play classic games like Sudoku and Minesweeper on Marek Mitala's portfolio site.",
   },
 };
 

@@ -1,0 +1,143 @@
+.container {
+    margin-top: 3rem;
+    padding: 2rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    background: #222;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    position: relative;
+    text-align: center;
+}
+
+.title {
+    font-family: "Nyxerin", sans-serif;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #ffd700;
+    text-align: center;
+}
+
+.timer, .flags {
+  font-size: 1.2rem;
+  text-align: center;
+  color: #ffd700;
+  background: #333;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  display: block;
+  margin: 0 auto 1rem;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.difficultyButton, .pauseButton {
+  background: #ffd700;
+  color: #000;
+  font-weight: bold;
+  padding: 0.8rem 1.2rem;
+  border: 2px solid #ffd700;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 0 5px #ffd700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: box-shadow 0.2s ease, filter 0.2s ease;
+  font-family: inherit;
+}
+
+.difficultyButton:hover, .pauseButton:hover {
+  box-shadow: 0 0 10px #ffd700;
+  filter: brightness(1.2);
+}
+
+.modeButton {
+  background: #ffd700;
+  color: #000;
+  font-weight: bold;
+  padding: 0.8rem 1.2rem;
+  border: 2px solid #ffd700;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 0 5px #ffd700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: box-shadow 0.2s ease, filter 0.2s ease;
+  font-family: inherit;
+}
+
+.modeButton:hover {
+  box-shadow: 0 0 10px #ffd700;
+  filter: brightness(1.2);
+}
+
+.board {
+  display: grid;
+  width: fit-content;
+  margin: 0 auto;
+  border: 3px solid #ffd700;
+  border-radius: 6px;
+  background: #111;
+  padding: 5px;
+}
+
+.cell {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: bold;
+  border: 1px solid #444;
+  cursor: pointer;
+  user-select: none;
+}
+
+.unrevealed {
+  background: #222;
+  color: #e0e0e0;
+}
+
+.revealed {
+  background: #444;
+  color: #bbb;
+}
+
+.mine {
+  background: #ff4d4d;
+  color: #000;
+}
+
+.num1 { color: #0000ff; }
+.num2 { color: #008000; }
+.num3 { color: #ff0000; }
+.num4 { color: #000080; }
+.num5 { color: #800000; }
+.num6 { color: #008080; }
+.num7 { color: #000000; }
+.num8 { color: #808080; }
+
+.message {
+  font-size: 2rem;
+  color: #ffd700;
+  margin: 1rem 0;
+}
+
+@media (max-width: 600px) {
+  .cell {
+    width: 25px;
+    height: 25px;
+    font-size: 0.8rem;
+  }
+} 

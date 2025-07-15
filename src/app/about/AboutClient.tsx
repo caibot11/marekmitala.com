@@ -10,8 +10,8 @@ export default function AboutClient() {
       <h1 className={styles.title}>About Me</h1>
 
       <section style={{ marginBottom: "2rem" }}>
-        <p className={styles.para}>
-          I am currently a student at <strong>Fontys ICT</strong>, where I am expanding my expertise in modern technologies and software development.
+        <p className={styles.description}>
+          I&apos;m a dedicated and passionate ICT student at Fontys University of Applied Sciences, with a robust educational foundation from SPŠE Zochova in Bratislava. My journey in technology has been marked by a relentless curiosity and a drive to innovate. I thrive on challenges and am always eager to expand my knowledge and skills.
         </p>
         <p className={styles.para}>
           Previously, I studied at <strong>SPŠE Zochova 9, Bratislava</strong>, where I completed the Intelligent Technologies course. During that course, I gained hands-on experience in networking (CCNA1 and CCNA2), robotics, cybersecurity, programming, database systems, electronics, and IoT devices.

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import ContactClient from "./ContactClient";
+import ContactClient from "./ContactClient.tsx";
 
 export const metadata: Metadata = {
   title: 'Contact Me',
