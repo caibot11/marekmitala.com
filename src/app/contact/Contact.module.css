@@ -1,52 +1,36 @@
 /* app/contact/Contact.module.css */
 
 .contactContainer {
-  margin-top: 3rem;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 500px;
-  padding: 2rem;
+  margin: 3rem auto;
+  max-width: 600px;
+  padding: clamp(1rem, 5vw, 2rem); /* Responsive padding */
   text-align: center;
   position: relative;
 }
 
-
-@media (min-width: 768px) {
-  .contactContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-}
-
-
 .contactBox {
   background: #222;
   border-radius: 8px;
-  padding: 2rem;
+  padding: clamp(1.5rem, 5vw, 2rem); /* Responsive padding */
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  max-width: 600px;           
   width: 100%;                   
   margin: 0 auto;
 }
 
-
 .contactTitle {
   font-family: "Nyxerin", sans-serif;
-  font-size: 2rem;
+  font-size: clamp(1.75rem, 6vw, 2rem); /* Responsive font size */
   text-transform: uppercase;
   letter-spacing: 2px;
   color: #ffd700;
   margin-bottom: 1rem;
 }
 
-
 .contactSubtitle {
   color: #ccc;
   line-height: 1.6;
   margin-bottom: 2rem;
 }
-
 
 .socialLinks {
   display: flex;
@@ -56,12 +40,11 @@
   margin-bottom: 2rem;
 }
 
-
 .contactButton {
   background: #ffd700;
   color: #000;
   font-weight: bold;
-  padding: 0.8rem 1.2rem;
+  padding: clamp(0.7rem, 2vw, 0.8rem) clamp(1rem, 4vw, 1.2rem); /* Responsive padding */
   border: 2px solid #ffd700;
   border-radius: 4px;
   cursor: pointer;
@@ -70,8 +53,8 @@
   letter-spacing: 1px;
   transition: box-shadow 0.2s ease, filter 0.2s ease;
   font-family: inherit;
+  font-size: clamp(0.9rem, 2.5vw, 1rem); /* Responsive font size */
 }
-
 
 .contactButton:hover {
   box-shadow: 0 0 10px #ffd700;
@@ -87,7 +70,7 @@
   border-radius: 4px;
   background: #333;
   color: #fff;
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 2.5vw, 1rem); /* Responsive font size */
 }
 
 .textArea {
@@ -95,23 +78,4 @@
   min-height: 120px;
 }
 
-
-@media (max-width: 600px) {
-  .contactContainer {
-    padding: 1rem;
-  }
-  .contactBox {
-    padding: 1.5rem;
-  }
-  .contactTitle {
-    font-size: 1.75rem;
-  }
-  .contactButton {
-    padding: 0.7rem 1rem;
-    font-size: 0.9rem;
-  }
-  .inputField,
-  .textArea {
-    font-size: 0.9rem;
-  }
-}
+/* Media queries are no longer needed with responsive values */

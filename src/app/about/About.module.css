@@ -4,7 +4,7 @@
   width: 100%;
   max-width: 900px;
   margin: 3rem auto 0 auto;
-  padding: 2rem;
+  padding: clamp(1rem, 5vw, 2rem); /* Responsive padding */
   background: #222;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
@@ -16,7 +16,7 @@
 
 .title {
   font-family: "Nyxerin", sans-serif;
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 6vw, 2rem); /* Responsive font size */
   margin-bottom: 1rem;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -39,15 +39,14 @@
 }
 
 .mapContainer {
-  flex: 1 1 0;
-  min-width: 400px;
+  flex: 1 1 300px; /* Allow stacking on smaller screens */
   background: #141414;
-  padding: 1rem;
+  padding: clamp(0.5rem, 3vw, 1rem); /* Responsive padding */
   border-radius: 4px;
 }
 
 .mapTitle {
-  font-size: 1.8rem;
+  font-size: clamp(1.2rem, 5vw, 1.8rem); /* Responsive font size */
   font-family: inherit;
   text-transform: none;
   letter-spacing: normal;
@@ -91,16 +90,4 @@
   align-items: center;
 }
 
-
-@media (max-width: 600px) {
-  .main {
-    margin-top: 2rem;
-    padding: 1rem;
-    width: 95%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .mapContainer {
-    padding: 0.5rem;
-  }
-}
+/* Media query is no longer necessary with flexible styles */

@@ -76,7 +76,7 @@ export const metadata: Metadata = {
 
 const particlesOptions = {
   particles: {
-    number: { value: 30, density: { enable: true, area: 800 } },
+    number: { value: 0, density: { enable: true, area: 800 } },
     color: { value: "#ffffff" },
     shape: {
       type: "circle",
@@ -117,7 +117,6 @@ const particlesOptions = {
     detectsOn: "canvas" as const,
     events: {
       onhover: { enable: true, mode: "grab" },
-      onclick: { enable: true, mode: "push" },
       resize: {
         enable: true,
       },

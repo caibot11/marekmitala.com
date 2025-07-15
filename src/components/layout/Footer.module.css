@@ -2,7 +2,7 @@
 
 .footer {
   background: #333;
-  padding: 0.5rem;
+  padding: clamp(0.5rem, 2vw, 1rem); /* Responsive padding */
   position: relative;
   bottom: 0;
   width: 100%;
@@ -18,7 +18,7 @@
 
 .iconLink {
   color: #fff;
-  font-size: 1.8rem;
+  font-size: clamp(1.5rem, 4vw, 1.8rem); /* Responsive icon size */
   transition: color 0.3s ease;
 }
 

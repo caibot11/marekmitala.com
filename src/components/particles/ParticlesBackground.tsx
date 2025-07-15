@@ -1,17 +1,21 @@
 // components/particles/ParticlesBackground.tsx
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadFull } from "tsparticles";
-import type { Container, ISourceOptions } from "@tsparticles/engine";
+import type { Container, ISourceOptions, Particle } from "@tsparticles/engine";
+import { tsParticles } from "@tsparticles/engine";
 
 interface ParticlesBackgroundProps {
   options: ISourceOptions;
 }
 
-const ParticlesBackground: React.FC<ParticlesBackgroundProps> = ({ options }) => {
+const ParticlesBackground: React.FC<ParticlesBackgroundProps> = ({
+  options,
+}) => {
   const [init, setInit] = useState(false);
+  const [container, setContainer] = useState<Container>();
 
   useEffect(() => {
     initParticlesEngine(async (engine) => {
@@ -21,9 +25,34 @@ const ParticlesBackground: React.FC<ParticlesBackgroundProps> = ({ options }) =>
     });
   }, []);
 
-  const particlesLoaded = async (_container?: Container) => {
-    // You can perform any action here after particles are loaded
-  };
+  const particlesLoaded = useCallback(async (container?: Container) => {
+    if (container) {
+      setContainer(container);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!container) {
+      return;
+    }
+
+    tsParticles.setOnClickHandler((event: Event, particles?: Particle[]) => {
+      if (!container) {
+        return;
+      }
+      const mouseEvent = event as MouseEvent;
+      if (particles && particles.length > 0) {
+        for (const particle of particles) {
+          container.particles.remove(particle);
+        }
+      } else {
+        container.particles.addParticle({
+          x: mouseEvent.offsetX,
+          y: mouseEvent.offsetY,
+        });
+      }
+    });
+  }, [container]);
 
   if (init) {
     return (

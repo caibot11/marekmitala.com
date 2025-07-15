@@ -313,12 +313,18 @@ export default function MinesweeperClient() {
     return `${styles.revealed} ${styles[`num${cell.adjacentMines}`]}`;
   };
 
+  const boardStyle = {
+    gridTemplateColumns: `repeat(${cols}, 1fr)`,
+  };
+
   return (
     <div className={styles.container}>
       {showConfetti && <Confetti width={pageSize.width} height={pageSize.height} />}
       <h1 className={styles.title}>Minesweeper</h1>
-      <div className={styles.timer}>Time: {new Date(timer * 1000).toISOString().substr(14, 5)}</div>
-      <div className={styles.flags}>Flags: {flagsUsed} / {mines}</div>
+      <div className={styles.infoPanel}>
+        <div className={styles.timer}>Time: {new Date(timer * 1000).toISOString().substr(14, 5)}</div>
+        <div className={styles.flags}>Flags: {flagsUsed} / {mines}</div>
+      </div>
       <div className={styles.controls}>
         <button className={styles.difficultyButton} onClick={() => startNewGame("beginner")}>Beginner</button>
         <button className={styles.difficultyButton} onClick={() => startNewGame("intermediate")}>Intermediate</button>
@@ -332,7 +338,7 @@ export default function MinesweeperClient() {
       </div>
       {gameState === "won" && <div className={styles.message}>You Won!</div>}
       {gameState === "lost" && <div className={styles.message}>Game Over!</div>}
-      <div className={styles.board} style={{ gridTemplateColumns: `repeat(${cols}, 1fr)` }}>
+      <div className={styles.board} style={boardStyle}>
         {board.map((row, r) =>
           row.map((cell, c) => (
             <div

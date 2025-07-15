@@ -1,7 +1,8 @@
 .container {
     margin-top: 3rem;
     padding: 2rem;
-    max-width: 900px;
+    width: fit-content; /* Allow container to fit the board */
+    max-width: 100%; /* Prevent overflow on smaller screens */
     margin-left: auto;
     margin-right: auto;
     background: #222;
@@ -21,15 +22,23 @@
     text-align: center;
 }
 
+.infoPanel {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  justify-content: center;
+}
+
 .timer, .flags {
   font-size: 1.2rem;
   text-align: center;
   color: #ffd700;
-  background: #333;
-  padding: 0.5rem 1rem;
+  background: #111;
+  padding: 0.75rem 1rem;
   border-radius: 5px;
-  display: block;
-  margin: 0 auto 1rem;
+  border: 2px solid #444;
+  flex: 1;
+  max-width: 300px;
 }
 
 .controls {
@@ -83,21 +92,22 @@
 
 .board {
   display: grid;
-  width: fit-content;
+  width: fit-content; /* Let the board size be determined by its content */
   margin: 0 auto;
   border: 3px solid #ffd700;
   border-radius: 6px;
   background: #111;
   padding: 5px;
+  overflow-x: auto; /* Add horizontal scroll on overflow */
 }
 
 .cell {
-  width: 30px;
-  height: 30px;
+  width: 30px; /* Fixed width */
+  height: 30px; /* Fixed height */
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1rem;
+  font-size: 1rem; /* Fixed font size */
   font-weight: bold;
   border: 1px solid #444;
   cursor: pointer;
@@ -132,12 +142,4 @@
   font-size: 2rem;
   color: #ffd700;
   margin: 1rem 0;
-}
-
-@media (max-width: 600px) {
-  .cell {
-    width: 25px;
-    height: 25px;
-    font-size: 0.8rem;
-  }
 } 

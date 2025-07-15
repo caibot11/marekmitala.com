@@ -22,7 +22,24 @@ body {
   line-height: 1.5;
   display: flex;
   flex-direction: column;
+  background-color: #121212; /* Added dark background */
+}
 
+/* Make sure the main content area allows particles to be seen and interacted with */
+.id-children {
+  flex-grow: 1;
+  position: relative; /* Needed for z-index context */
+  background-color: transparent; /* Allow particles to show through */
+}
+
+/* Ensure particles are in the background and interactive */
+#tsparticles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* Behind all content */
 }
 
 :root {
