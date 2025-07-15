@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Confetti from "react-confetti";
 import styles from "./minesweeper.module.css";
 
@@ -44,23 +44,7 @@ export default function MinesweeperClient() {
     return () => window.removeEventListener("resize", updatePageSize);
   }, []);
 
-  useEffect(() => {
-    startNewGame(difficulty);
-  }, [difficulty]);
-
-  useEffect(() => {
-    let interval: NodeJS.Timeout | null = null;
-    if (gameState === "playing" && !isPaused) {
-      interval = setInterval(() => {
-        setTimer((prev) => prev + 1);
-      }, 1000);
-    }
-    return () => {
-      if (interval) clearInterval(interval);
-    };
-  }, [gameState, isPaused]);
-
-  const startNewGame = (newDifficulty: Difficulty) => {
+  const startNewGame = useCallback((newDifficulty: Difficulty) => {
     let newRows, newCols, newMines;
     switch (newDifficulty) {
       case "beginner":
@@ -89,7 +73,23 @@ export default function MinesweeperClient() {
     setIsPaused(false);
     setFlagsUsed(0);
     setShowConfetti(false);
-  };
+  }, []);
+
+  useEffect(() => {
+    startNewGame(difficulty);
+  }, [difficulty, startNewGame]);
+
+  useEffect(() => {
+    let interval: NodeJS.Timeout | null = null;
+    if (gameState === "playing" && !isPaused) {
+      interval = setInterval(() => {
+        setTimer((prev) => prev + 1);
+      }, 1000);
+    }
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [gameState, isPaused]);
 
   const generateBoard = (rows: number, cols: number, mines: number): Cell[][] => {
     const board: Cell[][] = Array.from({ length: rows }, () =>

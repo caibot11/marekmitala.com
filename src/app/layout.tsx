@@ -10,7 +10,7 @@ import type { Metadata } from "next";
 import React from 'react';
 
 
-export const metadata = {
+export const metadata: Metadata = {
   title: {
     default: 'Marek Mitala - Software Developer & ICT Student',
     template: '%s | Marek Mitala'

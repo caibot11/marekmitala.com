@@ -21,7 +21,7 @@ const ParticlesBackground: React.FC<ParticlesBackgroundProps> = ({ options }) =>
     });
   }, []);
 
-  const particlesLoaded = async (container?: Container) => {
+  const particlesLoaded = async (_container?: Container) => {
     // You can perform any action here after particles are loaded
   };
 

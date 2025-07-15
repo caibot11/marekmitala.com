@@ -5,16 +5,8 @@ import Link from "next/link";
 import { useSpring, animated } from "@react-spring/web";
 import { useState, useEffect } from "react";
 import styles from "./Hero.module.css";
-import { FaGithub, FaLinkedin, FaEnvelope, FaPhone } from "react-icons/fa";
 
-interface HeroProps {
-  onContactClick: () => void;
-  onAboutClick: () => void;
-  onProjectsClick: () => void;
-  onFunClick: () => void;
-}
-
-const Hero: React.FC<HeroProps> = ({ onContactClick, onAboutClick, onProjectsClick, onFunClick }) => {
+const Hero = () => {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {

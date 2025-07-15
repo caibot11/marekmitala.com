@@ -8,7 +8,7 @@ import {
   getSolution,
   encryptSolution,
   decryptSolution,
-} from "./sudokuGenerator";
+} from "./sudokuGenerator.ts";
 
 export default function SudokuClient() {
   const [isClient, setIsClient] = useState(false);
@@ -88,13 +88,13 @@ export default function SudokuClient() {
           : Array.from({ length: 9 }, () => Array(9).fill(""))
       );
       setDifficulty(savedDifficulty as "easy" | "medium" | "hard");
-      setSolutionHash(encryptedSolution);
+      setSolutionHash(savedSolutionHash);
       setAttempts(parseInt(savedAttempts));
       setTimer(savedTimer ? parseInt(savedTimer) : 0);
     } else {
       startNewGame(difficulty);
     }
-  }, []);
+  }, [difficulty]);
 
   useEffect(() => {
     if (!isPaused) {
@@ -113,12 +113,12 @@ export default function SudokuClient() {
       localStorage.setItem("sudokuAttempts", attempts.toString());
       localStorage.setItem("sudokuTimer", timer.toString());
     }
-  }, [userBoard, notes, attempts, timer, isClient]);
+  }, [board, difficulty, isClient, solutionHash, userBoard, notes, attempts, timer]);
 
   const startNewGame = (newDifficulty: "easy" | "medium" | "hard") => {
     const newBoard = generatePuzzle(newDifficulty);
     setBoard(newBoard);
-    setUserBoard(newBoard.map((row) => [...row]));
+    setUserBoard(newBoard.map((row: number[]) => [...row]));
     setNotes(Array.from({ length: 9 }, () => Array(9).fill("")));
     setDifficulty(newDifficulty);
     setAttempts(3);
@@ -272,7 +272,7 @@ export default function SudokuClient() {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [selectedCell, noteMode, isPaused]);
+  }, [board, history, isPaused, noteMode, selectedCell, userBoard]);
 
   const handleUndo = () => {
     if (history.length > 0) {

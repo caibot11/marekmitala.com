@@ -2,6 +2,7 @@
 import React from "react";
 import { GoogleMap, OverlayView, useJsApiLoader } from "@react-google-maps/api";
 import { multiBrandNetworkStyle } from "./mapStyles";
+import Image from "next/image";
 
 const containerStyle = {
   width: "100%",
@@ -36,16 +37,16 @@ export default function CustomMap({ lat, lng }) {
         mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
       >
         {/* Reference the SVG from the public folder */}
-        <img
+        <Image
           src="/images/map-marker-svgrepo-com.svg"
           alt="Custom Marker"
           style={{
             // Center the bottom tip of the marker at the lat/lng coordinate
             transform: "translate(-50%, -100%)",
             cursor: "pointer",
-            width: "32px",  // Adjust width/height as needed
-            height: "32px",
           }}
+          width={32}
+          height={32}
         />
       </OverlayView>
     </GoogleMap>
