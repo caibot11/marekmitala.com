@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Projects.module.css";
+import type { Metadata } from "next";
 import {
   SiArduino,
   SiPython,
@@ -8,6 +9,21 @@ import {
   SiCss3,
   SiLinux,
 } from "react-icons/si";
+
+export const metadata: Metadata = {
+  title: 'Projects',
+  description: 'Explore Marek Mitala\'s portfolio of projects including Arduino-based weather station, WannaSmile college project, and Mario Lugi\'s Pizzeria ordering system. See my work in Python, JavaScript, HTML, CSS, and Arduino development.',
+  keywords: ['projects', 'portfolio', 'Arduino', 'Python', 'JavaScript', 'weather station', 'Raspberry Pi', 'web development', 'IoT'],
+  openGraph: {
+    title: 'Projects - Marek Mitala Portfolio',
+    description: 'Explore Marek Mitala\'s portfolio of projects including Arduino-based weather station, WannaSmile college project, and Mario Lugi\'s Pizzeria ordering system. See my work in Python, JavaScript, HTML, CSS, and Arduino development.',
+    url: 'https://marekmitala.com/projects',
+  },
+  twitter: {
+    title: 'Projects - Marek Mitala Portfolio',
+    description: 'Explore Marek Mitala\'s portfolio of projects including Arduino-based weather station, WannaSmile college project, and Mario Lugi\'s Pizzeria ordering system. See my work in Python, JavaScript, HTML, CSS, and Arduino development.',
+  },
+};
 
 interface Project {
   title: string;
