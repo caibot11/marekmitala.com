@@ -27,6 +27,9 @@ export default function FunClient() {
   const [isPaused, setIsPaused] = useState(false);
   const [selectedCell, setSelectedCell] = useState<{ row: number; col: number } | null>(null);
 
+  // Add undo states
+  const [history, setHistory] = useState<number[][][]>([]);
+
   const [pageSize, setPageSize] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
@@ -216,6 +219,8 @@ export default function FunClient() {
         newBoard[row][col] = num;
       }
       setUserBoard(newBoard);
+      // Add undo states
+      setHistory([...history, newBoard.map(r => [...r])]);
     }
   };
 
@@ -273,6 +278,24 @@ export default function FunClient() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [selectedCell, noteMode, isPaused, board]);
 
+  // Add undo function
+  const handleUndo = () => {
+    if (history.length > 0) {
+      const previous = history.pop();
+      setUserBoard(previous);
+      setHistory([...history]);
+    }
+  };
+
+  // Add reset button
+  const handleReset = () => {
+    if (confirm('Reset the puzzle?')) {
+      setUserBoard(board.map(r => [...r]));
+      setNotes(Array.from({ length: 9 }, () => Array(9).fill('')));
+      setHistory([]);
+    }
+  };
+
   return (
     <>
       {showConfetti && (
@@ -323,6 +346,12 @@ export default function FunClient() {
           <button onClick={handleHint} className={styles.hintButton}>
             Hint
           </button>
+          <button onClick={handleUndo} className={styles.hintButton} disabled={history.length === 0}>
+            Undo
+          </button>
+          <button onClick={handleReset} className={styles.hintButton}>
+            Reset
+          </button>
           <button onClick={handleSubmitSolution} className={styles.submitButton}>
             Submit Solution ({attempts} tries left)
           </button>
@@ -336,10 +365,8 @@ export default function FunClient() {
             <div key={rowIndex} className={styles.row}>
               {row.map((cell, colIndex) => {
                 const solution = decryptSolution(solutionHash);
-                const isWrong =
-                  difficulty === "easy" &&
-                  userBoard[rowIndex][colIndex] !== 0 &&
-                  userBoard[rowIndex][colIndex] !== solution[rowIndex][colIndex];
+                // Change isWrong to work for all difficulties
+                const isWrong = userBoard[rowIndex][colIndex] !== 0 && userBoard[rowIndex][colIndex] !== solution[rowIndex][colIndex];
 
                 const isSelected =
                   selectedCell &&
