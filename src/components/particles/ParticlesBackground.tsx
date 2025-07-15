@@ -1,20 +1,41 @@
 // components/particles/ParticlesBackground.tsx
 "use client";
 
-import Particles from "react-tsparticles";
+import { useEffect, useState } from "react";
+import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadFull } from "tsparticles";
-import type { Engine, ISourceOptions } from "tsparticles-engine";
+import type { Container, ISourceOptions } from "@tsparticles/engine";
 
 interface ParticlesBackgroundProps {
   options: ISourceOptions;
 }
 
 const ParticlesBackground: React.FC<ParticlesBackgroundProps> = ({ options }) => {
-  const particlesInit = async (main: Engine) => {
-    await loadFull(main);
+  const [init, setInit] = useState(false);
+
+  useEffect(() => {
+    initParticlesEngine(async (engine) => {
+      await loadFull(engine);
+    }).then(() => {
+      setInit(true);
+    });
+  }, []);
+
+  const particlesLoaded = async (container?: Container) => {
+    // You can perform any action here after particles are loaded
   };
 
-  return <Particles id="tsparticles" init={particlesInit} options={options} />;
+  if (init) {
+    return (
+      <Particles
+        id="tsparticles"
+        options={options}
+        particlesLoaded={particlesLoaded}
+      />
+    );
+  }
+
+  return <></>;
 };
 
 export default ParticlesBackground;
