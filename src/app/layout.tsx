@@ -29,6 +29,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
   },
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -38,7 +43,7 @@ export const metadata: Metadata = {
     siteName: 'Marek Mitala Portfolio',
     images: [
       {
-        url: '/images/og-image.jpg',
+        url: '/images/og-image.svg',
         width: 1200,
         height: 630,
         alt: 'Marek Mitala - Software Developer Portfolio',
@@ -49,17 +54,20 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Marek Mitala - Software Developer & ICT Student',
     description: 'Marek Mitala is a software developer and ICT student at Fontys University. Explore my projects, experience in Arduino, Python, web development, and more.',
-    images: ['/images/og-image.jpg'],
+    images: ['/images/og-image.svg'],
   },
   robots: {
     index: true,
     follow: true,
+    nocache: false,
     googleBot: {
       index: true,
       follow: true,
       'max-video-preview': -1,
       'max-image-preview': 'large',
       'max-snippet': -1,
+      noimageindex: false,
+      noarchive: false,
     },
   },
   icons: {
@@ -72,6 +80,13 @@ export const metadata: Metadata = {
     apple: '/apple-touch-icon.png',
   },
   manifest: '/site.webmanifest',
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION,
+  },
+  other: {
+    'msapplication-TileColor': '#1a1a1a',
+    'theme-color': '#1a1a1a',
+  },
 };
 
 const particlesOptions = {
@@ -142,6 +157,7 @@ export default function RootLayout({
       <head>
         <StructuredData type="person" />
         <StructuredData type="website" />
+        <StructuredData type="organization" />
       </head>
       <body style={{ margin: 0 }}>
         <ParticlesBackground options={particlesOptions} />

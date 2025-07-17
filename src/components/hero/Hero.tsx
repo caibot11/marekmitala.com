@@ -27,7 +27,7 @@ const Hero = () => {
             Hi, I&apos;m <span className={styles.glow}>Marek Mitala</span>
           </h1>
           <p className={styles.heroSubtitle}>
-            This is my perosnal website where I show my creativity, passion for modern web development and Arduino projects. Check out my{" "}
+            This is my personal website where I show my creativity, passion for modern web development and Arduino projects. Check out my{" "}
             <Link href="/projects" className={styles.inlineLink}>
               Projects
             </Link>
