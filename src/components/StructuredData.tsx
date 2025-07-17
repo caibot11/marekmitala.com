@@ -1,8 +1,13 @@
 import React from 'react';
 
+interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
+
 interface StructuredDataProps {
   type: 'person' | 'website' | 'organization' | 'breadcrumb';
-  data?: any;
+  data?: BreadcrumbItem[];
 }
 
 export default function StructuredData({ type, data }: StructuredDataProps) {
@@ -106,7 +111,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
     structuredData = {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
-      "itemListElement": data.map((item: any, index: number) => ({
+      "itemListElement": data.map((item: BreadcrumbItem, index: number) => ({
         "@type": "ListItem",
         "position": index + 1,
         "name": item.name,

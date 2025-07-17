@@ -73,7 +73,7 @@ export default function MinesweeperClient() {
     setIsPaused(false);
     setFlagsUsed(0);
     setShowConfetti(false);
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     startNewGame(difficulty);
